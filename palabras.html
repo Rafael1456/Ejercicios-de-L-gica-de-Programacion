@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa para contar cuantas letras tiene una oracion</title>
+</head>
+<body>
+    <h1>Hola Mundo</h1>
+    <script>
+        //Este es un ejercicio para mejorar mi logica de programacion y para utilizar los strings y poder ponerlos en practica
+        //Ahora realizare un algoritmo para dicho programa:
+
+        //1-Primero le pedire al usuario que ingrese una oracion con una funcion de entrada
+        //2-Esa oracion la guardare en una constante 
+        //3-Mediante la funcion .length sacare la longitud de la oracion
+        //4-La longitud la guardare en otra constante
+        //5-Y por ultimo le mostrare al usuario cuantas letras tiene su oracion 
+
+        const ORACION = prompt("Ingrese la oracion de la cual desea saber su longitud en caracteres.");
+        const ORACION_LONGITUD = ORACION.length;
+         let contadorEspacios = 0;
+       
+        for(let i = 0;i < ORACION_LONGITUD;i++){
+            if(ORACION[i] === " ") {
+                contadorEspacios++
+            }
+        }
+         const ORACION_SIN_ESPACIOS = ORACION_LONGITUD - contadorEspacios;
+          console.log(ORACION);
+          console.log(`Su oracion tiene una longitud de ${ORACION_SIN_ESPACIOS} caracteres.`);
+
+    </script>
+</body>
+</html>

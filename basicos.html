@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos JavaScript</title>
+</head>
+
+<body>
+    <h1> Fundamentos JavaScript</h1>
+    <script>
+        let hola;
+        hola = "Hola mundo"
+        var hello;
+        hello = " Hello world"
+        console.log(hello);
+        console.log(hola);
+        //Utilizar var es una mala practica, de aqui en adelante solo utiliza let que es mejor ya que tiene ambito de bloque
+        //Las variables definidas con var se guardan en el objeto global ya sea de frontend o backend en frontend se guardan en Window que es el objeto global y en backend que es node se guardan en global que es el objeto global de backend
+        let numero = 12+13
+        console.log(numero);
+        const PI = 3.1416;
+        console.log(PI);
+        //Vamos a utilizar const cuando tengamos claro que el valor no cambiara para los valores primitivos
+        //Otra cosa importante tener en cuenta que una constante no puede estar vacia 
+        //Sin embargo con las variables si se pueden definir y dejarlas vacias y despues asignarles un valor
+        //Para los valores compuestos si se puede utilizar const y cambiar datos ya que no se accede directmente al valor si no a una referencia y para JavaScript sigue siendo el mismo el mismo dato.
+        const Objeto = {
+            nombre: "Rafael",
+            edad: 18,
+            correo: "rafael1205@gmail.com"
+        }
+
+        const Numeros = [10,20,30,50];
+        //Se pueden escribir con el const sin importar si despues le vamos a agregar otra cosa ya que en este caso como son valores compuestos auque utilicemos const, si podremos agregar mas valores, ya que para JavaScript seguira siendo el mismo objeto o array
+        //Y volviendolo aclarar esto no pasa con valores primitivos(cedenas de texto, numericos o booleanos) ya que estos no pueden ser escritos con const y despues cambiarles el valor
+        //Aqui podriamos hacer esto
+
+        Objeto.telefono = 3512275850;
+        Numeros.push(90,70);
+        Numeros.slice(0,5);
+
+        //Y en este caso no habria problema al agregar mas valores aunque los hayamos escrito con const
+        //Aunque tambien los podriamos escribir asi 
+
+        let Objeto2 = {
+            videojuego: "Kirby-The mirror amazing",
+            horasdejuego: 70,
+            porcentaje: 35 
+        }
+
+        let Numeros2 = [1,2,3,4,5,6,7];
+         //Asi de esta manera y despues agregarles mas valores
+
+         Objeto2.misiones = 100;
+         Numeros2.push(8,9,10);
+         
+         // y en este caso tampoco habria problema
+         // sin embargo con los valores primitivos y volviendolo a mecionar esto no se puede 
+
+         const nombre = "Alexis";
+         // Y despues quererle cambiar el valor 
+         //nombre = "Daira" esto marcaria error ya que en este caso no se puede cambiarle el valor a la constante
+         //Pero de igual manera si tienes certeza de que el valor no va a cambiar, declara con const, si la de cadena de texo o el dato no cambiara
+         //En caso de los valores compuestos, si sabes que el arreglo o el objeto se va a mantener como objeto o arreglo declaralos con cosnt si supones que van a cambiar en algun punto a variable o a otro tipo de dato declaralos con let
+         console.log(Objeto);
+         console.log(Objeto2);
+         console.log(Numeros);
+         console.log(Numeros2);
+
+         //Con un algoritmo de ordenamiento(en este caso voy a utilizar el de burbuja) voy a ordenar el arreglo que declare anteriormente y que no lo puse ordenado el arreglo (Numeros)
+
+         function burbujaOrden (array) {
+            const n = array.length;
+            let corroborar;
+            do{
+                corroborar = false;
+                for(let i = 0;i<n-1;i++){
+                    if(array[i]>array[i+1]){
+                        const cambios = array[i];
+                        array[i]= array[i+1];
+                        array[i+1] = cambios;
+                        corroborar = true;
+                    }
+                }
+            } while(corroborar);
+            return array;
+         }
+         
+         const NumerosArreglados = burbujaOrden(Numeros);
+         console.log(NumerosArreglados);
+         
+         let celular = "Iphone 8 plus";
+         console.log(celular);
+         let computadora = "hp intel core i3";
+         console.log(computadora);
+         let botella = "Don Julio";
+         console.log(`la botella es ${botella}.`);
+
+
+         //Este es un ejercicio que realizare para mi logica de programacion, el cual tendra el siguiente algortimto
+         //1-Primero definire una funcion para poder invertir la cadena de texto
+         //2-Le pedire al usuario que ingrese una palabra para ver si esta es un palindromo
+         //3-Esta palabra la guardare en una constante
+         //4-Despues con la funcion invertire dicha palabra y la guardare en una nueva constante
+         //5-Mediante una condicional corrobare si dicha palabra es un palindromo o no
+         //6-Y por ultimo le mostrare el usuario si la palabra es un palindromo o no
+
+         function invertirCadena(cadena) {
+            return cadena.split('').reverse().join('');
+         }
+
+         const PALINDROMO = prompt("Ingrese una palabra para ver si es un palindromo.");
+         const PALINDROMO_ALREVES = 
+         invertirCadena(PALINDROMO);
+         console.log(PALINDROMO);
+         console.log(PALINDROMO_ALREVES);
+
+             if(PALINDROMO === PALINDROMO_ALREVES) {
+                console.log(`La palabra ${PALINDROMO} es una palindromo.`);
+             } else {
+                console.log(`La palabra ${PALINDROMO} no es un palindromo.`);
+             }
+
+         //Este sera otro problema para generar la secuencia Fibonacci hasta un numero dado por el usuario
+         //1-Mediante una funcion de entrada le pedire al usuario que ingrese un numero hasta el cual se generara la secuencia
+         //2-Crear un bucle para generar la secuencia Fibonacci y hacer que pare en el numero dado
+         //3-Mostrar al usuario hasta que numero se detuvo la secuencia
+         
+         const NUM_INGRESADO = prompt("Ingrese el numero hasta el cual se generara la secuencia Fibonacci");
+           let numActual = 0;
+           let numUno = 0;
+           let numDos = 1;
+           const numerosGuardados = [];
+
+            while (numUno + numDos < NUM_INGRESADO) {
+                numActual = numUno + numDos;
+                numUno = numDos;
+                numDos = numActual;
+                numerosGuardados.push(numActual);
+             } 
+
+          console.log(`La secuencia Fibonacci se detuvo en el numero ${numActual}.`);
+          console.log(numerosGuardados);
+
+          //Ahora veremos las cadenas de texto en el curso que estamos tomando, una frase muy famosa es que en Javascript todo es un objeto y como todo objeto, los strings tienen dos atributos, los cuales seran muy importantes tenerlas en cuenta, estas son:
+          //Propiedades-Las propiedades van a ser atributos de un objeto que nos daran informacion sobre dicho objeto
+          //Metodos-Los metodos son acciones que el objeto hace
+          //La gran diferencia o como tu los podras identificar es que los metodos todos terminan con () y esto no pasa con las propiedades solo es el .y la propiedad y en los metodos es el . y el metodo y los ()
+          //Los parentesis en los metodos es para que el metodo reciba ciertos datos del objeto para trabajar en eso con los datos dados
+          //Pero eso lo veremos ya mas adelate con las funciones 
+          //Esto lo podemos investigar en la pagina MDN en internet
+
+          //Cadenas de texto(Strings)
+          let apellido = "Vazquez";
+          //En este caso lo escribi con ""
+          //Pero tambien puede ser escrito con ''
+          //No hay nada que nos lo impida de las dos formas esta bien
+          let apellido2 = 'Padilla';
+          //Una manera mas formal para declarar un string seria con el operador new de esta manera
+          let saludo = new String("Hola Mundo");
+          //Sin embargo esto no es muy comun y casi nadie lo utiliza ya que es una manera muy formal de declarar un string
+
+          console.log(apellido,apellido2,saludo);
+          //Nota importante podemos imprimir en la consola varias variables con un mismo console.log separandolas con una ,
+
+          //Ahora veremos algunos metodos y propiedades del tipo de dato string o el objeto string
+          console.log(
+            apellido.length,
+            apellido2.length,
+            saludo.length
+          );
+          //En este caso .length es una propiedad que permite saber cual es la longitud de caracteres del string
+          //Y si lo imprimimos en la consola veremos cuantos tiene cada string
+          //Y como dijimos anteriormente como son propiedades solo llevan un . al incio y la propiedad, no llevan parentesis
+
+          console.log(
+            apellido.toLowerCase(),
+            apellido2.toUpperCase(),
+            saludo.slice(0,10)
+          );
+          //Estos son metodos, los reconocemos por los parentesis al final como lo habiamos mencionado anteriormente
+          //Algunos si necesitaran llevar parametros para que puedan trabajar a nuestro gusto que es lo que esta dentro de los parentesis
+          //Y otros estaran vacios ya depende del metodo y de la funcion que tenga
+          //El .toLowerCase() convierte toda la cadena a minusculas
+          //El .toUpperCase() convierte todo la cadena en mayusculas
+          //Por esto no llevan parametros
+          //Pero el .slice() hace una copia del string y la puedes guardar en otra variable si quieres cambiar la variable original, y en este caso los parametros sirven para ver desde que caracter hasta que caracter hacer la copia
+          
+          //Pero pues obviamente hay mas solamente estos son algunos ejemplos
+          //Y recordemos que cada objeto o tipo de dato tiene sus propios metodos y propiedades
+          //Algunos se pueden repetir o tambien estar con otro tipo de dato pero la funcion sera la misma ya sea metodo o propiedad
+          
+          //Ahora veremos otras dos caracteristicas de los strings
+          
+          //La primera es la concatenacion
+          let saludo2 = "Hola mi nombre es " + nombre + " " + apellido + ".";
+          console.log(saludo2);
+          //Aqui estampos usando la concatenacion que se trata de juntar variables, como por ejemplo aqui agregamos a la variable saludo2, las variables nombre y apellido usando el signo + de esta manera se da la concatenacion y si quisieramos agregar un espacio entre las palabras tambien se concatena con un + incluso tambien los puntos(.) y comas(,)
+
+          //La segunda es la interpolacion de variables 
+          //Template Strings y se usa de esta manera
+          let saludo3 = `Hola mi nombre es ${nombre} ${apellido}.`;
+          console.log(saludo3);
+          //Aqui estamos usando la interpolacion de variables, que de igual manera con la concatenacion es para juntar variables con texto estatico, tiene la misma fucnion que la concatenacion sin embargo se mira mejor y mas legible
+          //Nota importante: se tienen que utlizar con backticks(``) para que la interpolacion se pueda dar
+          //Y tambien debe estar dentro de un signo de dolar y llaves de esta forma ${}
+
+          //Otra funcion de las template strings seria el hecho de poder escribir dinamicamente codigo html en JavaScript, por ejemplo una lista desordenada con las estaciones del año
+          //Sin embargo ahi otras maneras pero como veremos acontinuacion es super mejor con las template strings que son bacticks(``)
+
+          let ul = "<ul><li>Primavera</li><li>Verano</li><li>Otoño</li><li>Invierno</li></ul>";
+          console.log(ul);
+          //Lo podemos escribir asi pero no es muy legible y puede parecer confuso en la lectura y escritura
+
+          let ul2 = "<ul>";
+          ul2 += "<li>Primavera</li>";
+          ul2 += "<li>Verano</li>";
+          ul2 += "<li>Otoño</li>";
+          ul2 += "<li>Invierno</li>";
+          ul2 += "</ul>";
+          console.log(ul2);
+          //Tambien lo podemos escribir utilizando la concatenacion (+= es el signo de concatenacion) pero igual aunque ya es mas legible, puede seguir siendo engorroso
+          //Aparte de que solamente es mas legible para la vista del programador, ya que en la consola no respetara los saltos de lineas que pusimos, y lo pondra todo junto
+
+          let ul3 = `
+            <ul>
+              <li>Primavera</li>
+              <li>Verano</li>
+              <li>Otoño</li>
+              <li>Invierno</li>
+            </ul>
+            `;
+            console.log(ul3);
+            //Y en este caso ya utilizamos las template strings, que ya es mas legible y super mas comodo al momento de escribirlo y se puede escribir de manera igual como en html sin que hayan errores
+            //Aparte de que de esta manera si respeta la manera en como lo escribimos, algo que en las otras manera de escriirlo no pasa, ni con la concatenacion, ni como un string normal
+         
+         //Pero esto ya es mas avanzado esto podria servirnos pero para mas adelante con el DOM
+         //Sin embargo es bueno conocer esta caracteristica de los strings que son las "Template strings" o "backticks"
+         //Que son muy funcionales y mas eficientes
+         
+
+
+         </script>
+</body>
+</html>

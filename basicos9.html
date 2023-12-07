@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de JavaScript 9</title>
+</head>
+<body>
+    <script>
+        //OBJETO DATE:
+
+        console.dir(Date);
+        console.table(Object.entries(Date));
+
+        console.log(Date());//Esto nos va imprimir en la consola la fecha exacta en la que este console se ejecuto.
+
+        let fecha = new Date();
+        console.log(fecha);
+        /*Ya como volvimos a sobreescribir el objeto Date, se va a cambiar la hora a la hora que ejecutamos el segundo
+        Date, asi que ya en los dos console.log() va a estar la misma fecha. Pero tambien hay metodos en el objeto Date
+        para obtener cosas especificas en la fecha, como por ejemplo:*/
+
+        console.groupCollapsed("Hora local.")
+
+        //Dia del mes:
+        console.log(fecha.getDate());
+
+        //Dia de la semana, en JS D L M M J V S => 0 1 2 3 4 5 6:
+        console.log(fecha.getDay());
+
+        //Mes - Ene Feb Mar Abr May Jun Jul Ago Sep Oct Nov Dic => 0 1 2 3 4 5 6 7 8 9 10 11:
+        console.log(fecha.getMonth());
+
+        //Año:
+        console.log(fecha.getFullYear());
+
+        //Hora:
+        console.log(fecha.getHours());
+
+        //Minutos:
+        console.log(fecha.getMinutes() + "Minutos");
+
+        //Segundos:
+        console.log(fecha.getSeconds());
+
+        //Milisegundos:
+        console.log(fecha.getMilliseconds());
+
+        //Podemos obtener solo la fecha:
+        console.log(fecha.toDateString());
+
+        //Otra opcion paran obtener la fecha:
+        console.log(fecha.toString());
+
+        //Fecha local:
+        console.log(fecha.toLocaleString());
+
+        //Fecha local, pero solo la fecha no el tiempo:
+        console.log(fecha.toLocaleDateString());
+
+        //Fecha local, pero solo el tiempo no la fecha:
+        console.log(fecha.toLocaleTimeString());
+
+        //Uso horario en el que nos encontramos:
+        console.log(fecha.getTimezoneOffset());/*En este caso mostrara 360, y seran minutos lo que inidca que estamos a 
+        -360 minutos de la hora 0.*/
+
+        console.groupEnd();
+
+        console.groupCollapsed("Hora universal.");
+        
+        //Dia del mes en el lugar donde esta la hora 0:
+        console.log(fecha.getUTCDate());
+
+        //Hora en el lugar donde esta la hora 0:
+        console.log(fecha.getUTCHours());
+
+        console.groupEnd();
+
+        /*Todos los metodos .get normlaes mostraran la fecha o los datos de la fecha en tu lugar local, pero todos los
+        metodos .getUTC mostraran la fecha y los datos de la fecha en el lugar donde esta la hora 0, es muy importante
+        que sepas y conozcas esto.*/
+
+        /*Cuantos segundos han pasado desde el 1 de Ene del 1970 es lo que se conoce como la fecha TimeStamp y para ver o
+        obtener ese dato se utiliza el metodo .now() y es recomenable utilizarlo con el constructor Date*/
+        console.log(Date.now());
+
+        //RECOMENDACION: MomentJS para manejar fechas en aplicaciones.
+        console.info("RECOMENDACION: Moment.JS para manejar fechas en aplicaciones.");
+
+        //Calcular cuanto tiempo ha pasado desde mi fecha de nacimiento hasta ahora:
+        let cumpleRafael = new Date(2005, 4, 27);
+        console.log(cumpleRafael);
+
+        let calcular = Date.now() - cumpleRafael;
+        console.log(calcular);//Y esto nos daria cuantos segundos han pasado desde que naci.
+
+        //OBJETO MATH:
+
+        /*Es un objeto estatico, siempre que lo utilices tienen que invocarlo siempre, nos sirve para hacer operaciones
+        especiales, es muy util tambien para generar numeros y tiene muchos metodos y constantes, acontinuacion veremos
+        algunos ejemplos:*/
+
+        console.log(Math);
+
+        //Constante PI:
+        console.log(Math.PI);
+
+        console.groupCollapsed("Metodos del objeto Math.");
+
+        //Para sacar el valor absoluto de un numero:
+        console.log(Math.abs(-10));
+
+        //Para redondear el numero a el numero entero mayor:
+        console.log(Math.ceil(7.2));
+
+        //Para redondear el numero a el numero entero menor:
+        console.log(Math.floor(7.8));
+
+        //Para redondear el numero al numero entero mas cercano sea mayor o menor:
+        console.log(Math.round(9.3));
+        console.log(Math.round(9.7));
+
+        //Para sacar la raiz cuadrada de un numero:
+        console.log(Math.sqrt(81));
+        console.log(Math.sqrt(144));
+
+        //Para elevar una potencia:
+        console.log(Math.pow(6, 2));//El primer numero es la base y el segundo el exponente.
+        console.log(Math.pow(3, 5));
+
+        //Para indicar si el numero es positivo, negativo o cero:
+        console.log(Math.sign(8));//Si es positivo siempre dara 1
+        console.log(Math.sign(-3));//Si es negativo siempre dara -1
+        console.log(Math.sign(10*0));//Si es 0 siempre dara 0
+
+        //Para generar un numero aleatorio entre el 1 y el 0:
+        console.log(Math.random());
+
+        //Para generar un numero aleatorio entre un rango de numeros:
+        console.log(Math.random() * 1000);//Tu eliges el rango, dependiendo tus necesidades.
+        console.log(Math.round(Math.random() * 100));//Para que salgan enteros los numeros aleatorios.
+
+        console.groupEnd();
+
+        //OPERADORES DE CORTOCIRCUITO:
+
+        /*
+        Cortocircuito OR- cuando el valor de la izquierda en la expresion siempre pueda validar a true, es el valor que se
+        cargara por defecto.
+        
+        Cortocircuito AND- cuando el valor de la izquierda en la expresion siempre pueda validar a false, es el valor que
+        se cargara por defecto.
+        */
+
+        //CORTOCIRCUITO OR:
+
+        /*Un ejemplo antes de que existieran los parametros por defecto como los tenemos ahora, se utilizba mucho los
+        operadores cortocircuito que eran para eso para dar un parametro o un valor por defecto, como en la funcion
+        siguiente:*/
+
+        function saludar (nombre = "Rafael") {
+            console.log(`Hola ${nombre} eres muy cool.`);
+        }
+        saludar();//Esta es la manera que tenemos ahora con parametros por defecto.
+
+        function saludar2 (nombre) {
+            nombre = nombre || "Rafael";
+            console.log(`Hola persona con nombre ${nombre}.`);
+        }
+        saludar2();
+        saludar2("Pepe");/*Aqui ya estamos utilizando el operador cortocircuito OR, si le asignamos un nombre se le pondra
+        dicho nombre, pero el valor que estara predeterminado es la el valor de la derecha pero recuerda que esto funciona
+        con el operador logico OR(||) ya que el parametro "nombre" siempre va a poder validar a true, por eso siempre
+        buscara primero ese valor, todo lo contrario con el operador logico AND(&&).*/
+
+        //CORTOCIRCUITO AND:
+
+        let saludo = undefined;
+        let saludo2 = "Franco";
+
+        console.log(saludo && saludo2);/*Aqui estamos ultilizando el operador cortocircuito AND, y este funciona de la 
+        siguiente manera siempre buscara primero el valor false y es el que cargara por defecto, lo contrarion al operador
+        cortocircuito OR*/
+
+        //Ejemplos:
+
+        console.groupCollapsed("Operadores cortocircuito OR/AND");
+
+        console.log(13 || "Valor de la derecha");
+        console.log("Cadena" || "Valor de la derecha");
+        console.log(true || "Valor de la derecha");
+        console.log(13 && "Valor de la derecha");
+        console.log("Cadena" && "Valor de la derecha");
+        console.log(true && "Valor de la derecha");
+
+        /*Aqui podemos ver mas bien la funcionalidad que tienen los operadores de cortocircuito, en los ejemplos con el 
+        operador OR veremos que en los casos cuando el valor de la izquiera siempre tienda a true ese sera el valor
+        que cargara por defecto y con el operador AND es lo contrario veremos que cuando el valor de la izquierda siempre
+        tienda a false ese sera el valor que cargara por defecto.*/
+
+        console.log(0 || "Valor de la derecha");
+        console.log("" || "Valor de la derecha");
+        console.log(false || "Valor de la derecha");
+        console.log(0 && "Valor de la derecha");
+        console.log("" && "Valor de la derecha");
+        console.log(false && "Valor de la derecha");
+
+        console.groupEnd();
+
+
+    </script>
+</body>
+</html>

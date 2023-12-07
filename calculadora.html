@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esta es una Calculadora simple.</title>
+</head>
+<body>
+    <h1>Hola mi nombre es Rafael y esta es mi primera calculadora que hago en JavaScript</h1>
+    <script>
+        //Definiremos funciones para cada operacion aritmetica en la calculadora:
+         
+        //Esta funcion es para hacer una suma:
+        const suma = function (num1, num2) {
+            return num1 + num2;
+        }
+
+        //Esta funcion es para hacer una resta:
+        const resta = function (numUno, numDos) {
+            return numUno - numDos;
+        }
+
+        //Esta funcion es para hacer una multiplicacion:
+        const multiplicacion = function (uno, dos) {
+            return uno * dos;
+        }
+
+        //Esta es una funcion para hacer una division:
+        //Tambien en este caso tendremos que recordar que tenemos que poner que si se divide por cero muestre al usuario que esto no se puede.
+        const division = function (a, b) {
+            if( b !== 0) {
+                return a / b;
+            } else {
+                return "No se puede dividir por cero";
+            }
+        }
+
+            /*Ahora realizaremos un bucle infinito(while) que solo se pueda salir hasta que el usuario salga del programa, 
+            añadiremos opciones para que el usuario pueda elegir que operacion aritmetica desea realizar y utilizaremos
+            un switch para poner las opciones*/
+
+            let programaEnEjecucion = true;
+
+            while(programaEnEjecucion) {
+                alert("Hola mi nombre es Rafael\nOpciones-1-Suma-2-Resta-3-Multiplicacion-4-Division-5-Salir del programa");
+
+                const OPCION_ELEGIDA = parseInt(prompt("Eliga una opcion"));
+
+                switch (OPCION_ELEGIDA) {
+                    case 1:
+                        const num1 = parseFloat(prompt("Ingrese el primer numero para la suma"));
+                        const num2 =parseFloat(prompt("Ingrese el segundo numero para la suma"));
+                        const RESULTADO_SUMA = suma(num1, num2);
+                        alert(`El resultado de la suma es ${RESULTADO_SUMA}.`);
+                        console.log(`El resultado de la suma ${RESULTADO_SUMA}.`);
+                        break;
+                    case 2:
+                        const numUno = parseFloat(prompt("Ingrese el primer numero para la resta"));
+                        const numDos = parseFloat(prompt("Ingrese el segundo numero para la resta"));
+                        const RESULTADO_RESTA = resta(numUno, numDos);
+                        alert(`El resultado de la resta es ${RESULTADO_RESTA}.`);
+                        console.log(`El resultado de resta es ${RESULTADO_RESTA}.`);
+                        break;
+                    case 3:
+                        const uno = parseFloat(prompt("Ingrese el primer numero para la multiplicacion"));
+                        const dos = parseFloat(prompt("Ingrese el segundo numero para la multiplicacion"));
+                        const RESULTADO_MULTIPLICACION = multiplicacion(uno, dos);
+                        alert(`El resultado de la multiplicacion es ${RESULTADO_MULTIPLICACION}.`);
+                        console.log(`El resultado de la multiplicacion es ${RESULTADO_MULTIPLICACION}.`);
+                        break;
+                    case 4:
+                        const a = parseFloat(prompt("Ingrese el primer numero para la division"));
+                        const b = parseFloat(prompt("Ingrese el segundo numero para la division"));
+                        const RESULTADO_DIVISION = division(a, b);
+                        alert(`El resultado de la division es ${RESULTADO_DIVISION}.`);
+                        console.log(`El resultado de la division es ${RESULTADO_DIVISION}.`);
+                        break;
+                    case 5:
+                        alert("Usted esta saliendo del programa");
+                        programaEnEjecucion = false;
+                        break;
+                    default:
+                        alert("Opcion no valida");
+                }
+            }
+    </script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de JavaScript 3</title>
+</head>
+<body>
+    <script>
+
+        //Ahora veremos los arreglos(arrays)
+        //Hay diferentes manera de declarar un arreglo:
+
+        const a = [];
+        console.log(a);
+        //Este es un arreglo vacio y es una manera de declararlo
+
+        const b = [1,true,"Hola",[1,2,3,4, [true, false]]];
+        console.log(b);
+        //Es la mimsa manera de declararlo pero ya no esta vacio, ya le agregamos varios valores incluso otro arreglo
+
+        console.log(a.length, b.length);
+        /*Esto es para ver con cuantos elementos cuenta el arreglo, en este caso a tendria una longitud de 0 ya que esta vacio,
+        y b tendria una longitud de 4 */
+
+        //Si quisieramos acceder a un valor en especifico del arreglo, seria de la siguiente manera:
+
+        console.log(b[2]);
+        /*Aqui estaria accediendo al elemento que esta en la pocision segunda, ya que como recordaremos en un arreglo
+        se empieza con la posicion cero*/
+        //En el array b tenemos otro array dentro del array, como le hacemos para acceder a un dato de ese array? Seria asi:
+
+        console.log(b[3][3]);
+        /*los primeros corchetes estaria accediendo a un valor en el arreglo padre que es el b, y los segundos corchetes
+        estarian accediendo a un dato del arreglo que esta dentro del arreglo padre y si hubiera otro arreglo dentro del 
+        segundo arreglo seguiriamos la misma logica*/
+        //Por ejemplo:
+
+        console.log(b[3][4][1]);
+        /*De esta manera accederiamos a false en el ultimo arreglo, dato importante recuerda que en el primer y segundo
+        corchete tiene que ir la posicion en la que se encuentra el array para asi poder acceder al siguiente y asi
+        sucesivamente*/
+
+        //Otra manera de poder declarar un arreglo seria la siguiente:
+
+        const c = Array.of(1, 2, 3, 4, 5, 6); //Aqui lo estamos hacienso con el constructor "Array" de JS con el metodo "of"
+        console.log(c);
+        
+        //Aqui tenemos otra manera para declarar un array:
+
+        const d = Array(100).fill(false);/*Aqui tambien estamos usando el contructor, pero utilizamos otro metodo
+        que es el "fill" que seria como "En un Arreglo de 100 posiciones llena esas 100 posiciones con false" eso es
+        lo que hace el .fill() y es otra manera de declarar el array*/
+        console.log(d);
+
+        //Otra manera de declarar un arreglo es esta:
+
+        const e = new Array();//Aqui utilizamos tambien el constructor pero ahora con new
+        console.log(e);
+        /*Pero debes saber que esta actualmente es una manera muy poco comun de declarar un arreglo, ya no se utiliza mucho,
+        asi que no es tan recomendable utilizar aunque sigue funcionando*/
+
+        /*Recordemos que como habiamos dicho con los tipos de datos primitivos hay atributos que tienen los datos: metodos y
+        propiedades y los arreglos no son la expecion aqui veremos unos ejemplos:*/
+
+        const nombres = ["Rafael", "Luis", "Jessica", "Maria"];
+        console.log(nombres);
+
+        //Este es un arreglo que tiene varios nombres como cuerpo, ahaora usaremos al metofo.push() para agregar un nombre mas:
+
+        nombres.push("Emanuel");//El metodo .push() agrega un nuevo elemento al final del array
+        console.log(nombres);
+        //Aqui ya estaria agregado el nombre Emanuel en el arreglo
+        //Ahora utilizaremos el metodo .pop() para elimar un elemento:
+
+        nombres.pop();//El metodo .pop() elimina el ultimo elemento del arreglo
+        console.log(nombres);
+        //Aqui ya estaria eliminado el nombre Emanuel en el arreglo
+
+        //Hay un metodo que nos permite ejecutar una funcion para cada elemnto del arreglo que es .forEach() que como parametro acepta una funcion
+        //Por ejemplo:
+
+        nombres.forEach(function (elemento, index) {
+          console.log(`<li id="${index}">${elemento}</li>`);
+        });
+        /*Aqui el metodo .forEach() pues es para que la funcion se ejecute en cada elemento de nuestro arreglo en este caso
+        "nombres" donde los parametros que le asignamos a nuestra funcion anonima son: "elemento" que tambien puede ser "el"
+        y "index" que tambien puede ser "i", donde elemento es el elemento de nuestro arreglo en el que va iterando la funcion
+        y index es el indice de ese elemnto, entonces si va en la pirmera ieracion seria el elemento primero de nuestro arreglo
+        con el indice 0 ya que los arreglos siempre comienzan de cero y asi sucesivamente hasta que se terminen los elementos
+        de nuestro arreglo.*/
+
+        /*Pero bueno estos solo son algunos ejemplos de metodos y propiedades de los arreglos(arrays) pero pues hay muchos mas
+        pero pues aqui nos los veremos todos, para investigar mas sobre los metodos nos podremos ir a MDN en en el navegador web
+        para conocer mas metodos y propiedades y asi tener en cuenta todos los que hay*/
+        //Con esto finalizamos los Arreglos(arrays).
+
+        //Ahora veremos los objetos: un dato muy interesante es que se dice que en JavaScript todo es un objeto.
+        //Una buena practica en los objetos es simepre declararlos con "const"
+
+        const objeto = {
+            //Esta es una manera de escribirlo
+        }
+
+        //Sin embargo tambien lo podemos escribir de esta manera, aunque no es muy comun ya, pero seria asi:
+
+        const objeto2 = new Object(); //Aqui lo estamos escribiendo con su constructor que es "Object"
+
+        /*Un objeto es una coleccion de datos llave y aqui veremos un ejemplo: donde las llaves serian: nombre:, apellido:,
+        edad:, etc. Y los datos pues lo que siguen de las llaves, es algo parecido como en CSS*/
+        //-Dato importante de los objetos es que pueden tener cualquier tipo de dato en su cuerpo, incluso un objeto.
+
+        const rafael = {
+            nombre: "Rafael",
+            apellido: "Vazquez",
+            edad: 18,
+            pasatiempos: ["Jugar videojuegos", "Hacer ejercicio", "Estudiar"],
+            soltero: true,
+            contacto: {
+                email: "rafaelvazquez1205@gmail.com",
+                instagram: "rafaelvazquezpadilla",
+                telefono: 3512275850
+            },
+            saludar: function () {
+                console.log("Hola mi nombre es Rafael");
+            }
+        }
+
+        console.log(rafael); /*Este fue un objeto como ejemplo con mis datos personales, en el que podemos ver que los
+        objetos pueden tener cualquier tipo de dato que quieras poner en el */
+
+        //Pero ahora, ¿Como accedemos a los valores de un objeto?
+        /*Los valores de un objeto es como si fueran propiedades del objeto, pero una manera de decirles mas correctamente seria
+        que son atributos, asi como accedemos a las demas propiedades de otros tipos de datos como por ejemplo: ".length", 
+        con la notacion del . podemos acceder a los valores de un objeto, sin embargo no es la unica manera que existe
+        tambien podemos acceder a sus valores con la notacion de los [], pero las fuciones dentro del objeto es como si fueran
+        metodos del objeto asi que se les llama de manera diferente*/
+
+        //Por ejemplo en atributos de un objeto:
+
+        console.log(rafael["nombre"]);
+        console.log(rafael["edad"]);
+        //Aqui es con notacion de los [] en los atributos del objeto
+
+        console.log(rafael.pasatiempos);
+        console.log(rafael.pasatiempos[2]);/*Aqui es si quisiera acceder a un dato en especifico de el arreglo dentro del objeto "rafael"*/
+        console.log(rafael.contacto.telefono);/*Y de esta manera para acceder a un dato en especifico de el objeto dentro del objeto "rafael"*/
+        console.log(rafael.soltero);
+        //Aqui es con la notacion del .
+
+        /*De estas dos maneras la mas aceptada o la mas correcta es la de la notacion del . asi que es mejor utilizar esta*/
+
+        //Por ejemplo en metodos de un objeto:
+
+        rafael.saludar();//La unica diferencia es que ademas de la notacion del . se le agregan parentesis ().
+       
+       
+        /*En este caso no es necesario el console.log ya que la funcion "saludar" ya tiene un console en si misma, pero
+        si fuera otra funcion que no tiene un console pues si seria necesario si queremos que la imprima en la consola, pero
+        pues seria console.log(rafael.funcion()).*/ 
+
+        /*Ahora veremos un poco la palabra reservada "this" en el contexto que la veremos es para invocar una llave del objeto,
+        en el mismo objeto utilizando tambien la interpolacion de variables y la notacion del ., que seria como decirle 
+        al objeto "de ti agarra esto", ahora veremos un ejemplo, utilizando this en una funcion en el objeto*/
+
+        const alexis = {
+            edad: 18,
+            nombre: "Alexis",
+            apellido: "Padilla",
+            decirMiNombre: function () {
+                console.log(`Hola me llamo ${this.nombre} ${this.apellido} y tengo ${this.edad} años`)
+            }
+        }
+
+        alexis.decirMiNombre();//Aqui invoco solo la funcion en el objeto "alexis" y como ya tiene un console no le pongo.
+
+        //Ahora veremos algunos metodos del constructor "Object":
+
+        console.log(Object.keys(rafael));/*Este es el metodo .keys() y nos sirve para listar todas las llaves que tiene un
+        objeto, en este caso del objeto que hice anteriormente "rafael" y si lo imprimo en la consola, pues me mostrara
+        todas las llaves que tengo en este objeto.*/ 
+
+        console.log(Object.values(alexis));/*Este es el metodo .values() y nos sirve para algo muy parecido que el .keys()
+        pero en ves de las llaves nos enlista los valores que tienen las llaves:*/
+
+        //Ahora veremos algunas propiedades de los objetos:
+
+        console.log(rafael.hasOwnProperty("nombre"));/*Esta es la propiedad .hasOwnProperty() y nos sirve para corroborar si 
+        hay una propiedad en un objeto, en este caso puse "nombre" y como el objeto "rafael" si tiene un atributo llamado
+        nombre me mandara "true", ya que existe, en caso contrario mandaria "false" como en este otro console.*/ 
+        console.log(rafael.hasOwnProperty("sexo"));
+        //Y como sexo no es un atributo del objeto "rafael" manda "false".
+
+        /*Esto solo son algunos ejemplos de metodos y propiedades, si queremos indagar mas sobre estos, podemos revisar MDN en
+        el navegador web de tu agrado*/
+        //Aqui terminamos lo basico de los objetos.
+
+    
+    </script>
+    
+</body>
+</html>

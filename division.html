@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa para hacer una division y sacar el modulo de la misma</title>
+</head>
+<body>
+    <script>
+        /*En esta ocasion realizaremos un programa el cual va a solicitar al usuario ingresar dos numeros y luego muestre
+        el resultado de su division, junto con el residuo de la division. Utiliza funciones o modulos para realizar estas
+        operaciones.*/
+
+        /*1-Primero definiremos dos funciones, una para sacar la division y otra para sacar el modulo, validando que no
+        se pueda dividir por cero.*/ 
+
+        const division = (numero1, numero2) => {
+            if (numero2 !== 0) {
+                return numero1 / numero2;
+            } else {
+                return "No se puede dividir por cero";
+            }
+        }
+
+        const modulo = (numero1, numero2) => numero1 % numero2;
+
+        /*2-Con un blucle while infinito voy hacer que el programa se ejecute una y otra vez hasta que el usuario elija la
+        opcion de salir del programa y la variable corroborar pase a false, mediante una estructura de switch-case.*/
+
+        let corroborar = true; 
+
+        while (corroborar) {
+
+            alert(`Elija una opcion:
+            1-Seguir en el programa.
+            2-Salir del programa.
+            `);
+
+            const OPCION_ELEGIDA = parseInt(prompt("Ingrese la opcion."));
+            
+            switch(OPCION_ELEGIDA) {
+            /*3-Con un bucle while interno vamos a realizar la validacion de que se quiera dividir por cero, en caso de que
+            el usuario quiera dividir por cero se le mostrara un error y le volvera a pedir que ingrese los numeros, de la
+            misma manera si ingresa caracteres que no sean numeros, el bucle se repetira una y otra vez hasta que ingrese
+            numeros validos y mediante funciones de entrada le pediremos al usuario que ingrese dos numeros para 
+            dividirlos y calcular su modulo.*/
+            case 1:
+                let numerosValidos = true;
+                let numero1;
+                let numero2; 
+                while(numerosValidos){
+                    numero1 = parseFloat(prompt("Ingrese el primero numero para hacer la division y calcular el modulo."));
+                    numero2 = parseFloat(prompt("Ingrese el segundo numero para hacer la division y calcular el modulo."));
+
+        //4-Validaremos las entradas del usuario con una estructura try-catch dentro del bucle while interno.
+
+        try {
+            if( isNaN(numero1) && isNaN(numero2)) {
+                throw new Error("El caracter ingresado no es un numero.");
+            } else if(numero2 === 0) {
+                throw new Error("No se puede dividir por cero.");
+            } else {
+                numerosValidos = false;
+            }
+            
+        } catch (error) {
+            alert(`Se produjo un ${error}`);
+        } finally {
+            console.log("Se valido el numero.");
+        }
+    }  
+
+        //5-Invocar las funciones que definimos anteriormente para hacer dichas operaciones.
+
+        const RESULTADO_DIVISION = division(numero1, numero2);
+        const RESULTADO_MODULO = modulo(numero1, numero2);
+
+        /*6-Por ultimo mostrarle el resultado al usuario.*/
+
+        alert(`El resultado de la division y su modulo son: division= ${RESULTADO_DIVISION} modulo= ${RESULTADO_MODULO}.`);
+        console.log(`El resultado de la division y su modulo son: division= ${RESULTADO_DIVISION} modulo= ${RESULTADO_MODULO}.`);
+        break;
+
+        /*7-En caso de que el usuario elija la opcion para salir del programa, la variable corroborar cambia a false
+        rompiendo el bucle while y cierra el programa mostrandole una alerta de que esta saliendo del programa.*/
+        case 2:
+            alert("Usted esta saliendo del programa.");
+            corroborar = false;
+            break;
+
+            /*8-En caso de que el usuario elija una opcion no valida solo le indicara que lo intente de nuevo.*/
+            default:
+                alert("Opcion no valida, intentelo de nuevo.");
+
+        
+        }
+        
+    }
+    </script>
+</body>
+</html>

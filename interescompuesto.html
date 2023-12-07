@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de interes compuesto</title>
+</head>
+<body>
+    <script>
+        /*En esta ocasion realizaremos un programa que va a calcular el valor final de una inversion con tasa de interes 
+        compuesto, este sera un ejercicio para practicar un poco, y ir soltandome a la hor de escribir codigo.*/
+
+        //Primero definiremos una funcion, la cual va a devolver la ganancia del usuario con su inversion.
+
+        const calcularGanancia = function (capital, interes, tiempo) {
+            return capital * (1 + interes) ** tiempo;
+        }
+
+        //Definiremos funciones para validar la entrada del usuario y asegurarnos de que sean validos.
+
+        const esNumeroPositivo = function (numero) {
+            return !isNaN(numero) && numero >= 0;
+        }
+
+        const estaEnRango = function (numero, min, max) {
+            return !isNaN(numero) && numero >= min && numero <= max;
+        }
+
+        //Mediante una funcion de entrada le preguntaremos al usuario, si su interes compuesto es mensual o anual.
+
+        alert("Hola mi nombre es Rafael y esta es una calculadora para calcular el valor final de una inversion con interes compuesto.");
+
+        const OPCION = prompt("¿Su interes compuesto es anual o mensual?");
+
+        //Con una condicional haremos las dos opciones, una si el interes es anual y otra si es mensual.
+        /*En cada bloque de codigo del condicional le pediremos al usuario 3 cosas:
+
+        1-Su capital
+        2-La tasa de interes compuesto que le ofrecen(El porcentaje lo pasaremos a decimal dividiendolo entre 100)
+        3-El tiempo que mantendra la inversion
+        */
+       //Y tambien corrobaremos las entradas del usuario para que sean validas para poder calcualr bien las ganancias.
+
+        if(OPCION.toLowerCase === "mensual") {
+            const CAPITAL = parseFloat(prompt("Ingrese la capital que desee invertir"));
+            const INTERES = parseFloat(prompt("Ingrese la tasa de interes compuesto que le ofrecen, porfavor escriba en porcentaje"));
+            const TIEMPO = parseInt(prompt("Ingrese la cantidad de meses que mantendra su inversion"));
+            if(!esNumeroPositivo(CAPITAL)) {
+                alert("El capital debe ser un numero positivo.");
+            } else if (!estaEnRango(INTERES, 0, 100)) {
+                alert("La tasa de interes debe estar entre 0 y 100");
+            } else if (!esNumeroPositivo(TIEMPO)) {
+                alert("El tiempo debe ser un numero positivo");
+            } else {
+                const INTERES_DECIMAL = INTERES / 100;
+                const RESULTADO_MENSUAL = calcularGanancia(CAPITAL, INTERES_DECIMAL, TIEMPO);
+                alert(`El valor final de su inversion sera ${RESULTADO_MENSUAL}.`);
+            }
+        } else {
+            const CAPITAL2 = parseFloat(prompt("Ingrese la capital que desea invertir"));
+            const INTERES2 = parseFloat(prompt("Ingrese la tasa de interes compuesto que le ofrecen, porfavor escriba en  porcentaje"));
+            const TIEMPO2 = parseInt(prompt("Ingrese la cantidad de años que mandentra su inversion"));
+            if(!esNumeroPositivo(CAPITAL2)) {
+                alert("La capital debe se un numero positivo");
+            } else if (!estaEnRango(INTERES2, 0, 100)) {
+                alert("La tasa de interes debe estar entre 0 y 100");
+            } else if (!esNumeroPositivo(TIEMPO2)) {
+                alert("El tiempo debe ser un numero positivo");
+            } else {
+                const INTERES_DECIMAL2 = INTERES2 / 100;
+                const RESULTADO_ANUAL = calcularGanancia(CAPITAL2, INTERES_DECIMAL2, TIEMPO2);
+                alert(`El valor final de su inversion sera ${RESULTADO_ANUAL}.`);
+            }
+        }
+
+
+
+
+
+    </script>
+</body>
+</html>

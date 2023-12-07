@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de JavaScript 10</title>
+</head>
+<body>
+    <script>
+        //ALERT, CONFIRM Y PROMPT:
+        //Cuelgan del objeto window- window.alert() window.prompt() window.confirm().
+
+        console.log(window);
+        /*window.alert("Esto es una alerta y aparecere como una opcion en la pantalla del usuario.");
+        window.confirm("Esto es una confirmacion y aparezco como dos opciones en la pantalla del usuario");
+        window.prompt("Permite al usuario ingresar un valor");*/
+        //Se pueden escribir asi con el objeto window, pero sin embargo no es nesesario pueden ser escritos sin el.
+
+        /*
+        Alert- Solo manda un alerta no tiene otra funcion, incluso cualquier alerta si la guardamos en una variable y la
+        mandamos a la consola esta dara "undefined" por lo tanto nos queda claro que solo es para mandar alertas no hay
+        alguna otra cosa que podamos hacer con una alerta.
+
+        Confirm- Manda un mensaje al usuario, es muy parecido al de la alerta, sin embargo este tiene dos opciones aceptar
+        o cancelar, si nosotros guardamos el confirm en una variable, y al momento de que el usuario tenga que elegir entre 
+        aceptar o cancelar, si presiona "aceptar" la variable tendera a "true", pero si presiona cancelar la variable 
+        tendera a "false" esto puede ser util para manejar despues esas decisiones del usuario.
+
+        Prompt- Este a diferencia de los otros dos , ya permite una entrada de datos al usuario una interaccion, sin 
+        embargo es muy parecido tambien, puedes colocarle un mensaje respecto a lo que quieras que el usuario ingrese para
+        asi el usuario tenga conocimiento sobre que ingresar, tiene tambien dos opciones, "aceptar" o "cancelar" si esto
+        lo guardamos en una variable, y el usuario ingresa un dato y presiona "aceptar" lo que haya escrito se habra 
+        guardado en la varible, pero si ingresa un dato y presiona cancelar, esto pasara como algo "null" se nulifica
+        ya que cancela la entrada y JS lo pasa a null ya despues veremos que hay manera de regresar a pedirle la entrada de
+        datos, pero eso ya depende de lo que vaya hacer tu codigo.
+        */
+
+        let alerta = alert("Esto es una alerta pa.");
+        let confirmacion = confirm("Esto es una confirmacion pa.");
+        let aviso = prompt("Esto es una aviso y permite al usuario ingresar un dato pa.");
+
+        console.log(alerta);
+        console.log(confirmacion);
+        console.log(aviso);
+
+        /*EXPRESIONES REGULARES:
+        Son una secuencia de caracteres que forma de un patron de busqueda, principalmente utilizada para la busqueda
+        de patrones de cadenas de caracteres.
+
+        Es importante que tengas en cuenta que pues no es estrictamente necesario que te aprendas todas estas expresiones
+        de memoria, es importante que conozcas lo que hacen y su poder y que estes familiarizado con ellas sin emabargo no
+        es estrictamente necesario que te las aprendas de memoria, por que recuerda no hay mejor amigo de un progamador que 
+        Google, en internet encuentras todo.
+        */
+
+        //Acontinuacion veremos distintas maneras de ejecutar las "Expresiones Regulares".
+
+        let string = "lorem nipsu Lorem";
+        let expReg = new RegExp("lorem", "ig");/*Esta es una manera de ejecutar las "Expresiones Regulares*, en este caso
+        lo que nos pide como parametros es primero lo que queremos buscar, y el segundo parametro son las banderas, las
+        banderas son los comodines que van a determinar lo que JS va a ser en esa busqueda, son como instrucciones que 
+        nosotros le daremos con esos comodines por ejemplo si utilizaremos el comodin "g" estariamos diciendole que busque
+        lo que le pusimos como primer parametro en todo el entorno global, a diferencia de que si no lo utilizamos solo
+        buscara y a la primer coincidencia que encuentre esa la tomara y ignorara si hay mas, es un ejemplo como esos hay
+        mas.Tambien hay dos metodos  que nos van a mostrar si se encontro lo que estamos buscando, la primera es .test()
+        que nos mandara un valor booleano dependiendo si fue encontrada o no y el segundo metodo es .exec() que este
+        nos mostrara mas detalladamente si se encontro o no, con un arreglo.
+        */
+        console.log(expReg.test(string));
+        console.log(expReg.exec(string));
+
+
+        let expReg2 = /lorem/ig;/*Esta es otra manera para ejecutar las "Expresiones Regulares", y en este caso
+        no utilizamos su constructor es mas simplificado solo lo escribimos entre diagonales y funciona de la misma
+        manera para ingresar las banderas solo las ponemos despues del lo que queremos buscar y listo tiene la
+        misma funcionalidad que la anterior manera y le funcionan los mismos metodos. Esta es la manera mas comun que
+        se utiliza.*/
+        console.log(expReg2.test(string));
+        console.log(expReg2.exec(string));
+        
+        /*Son muy importantes ya que no solo sirven para buscar algo en especifico en nuestro codigo, tambien nos sirve
+        para validar entradas tales como el correo electronico, la contraseña, el RFC, las tarjetas de credito, y todo
+        ese tipo de cosas que tengas ciertos caracteristicas para poder escribirse.*/
+
+        //FUNCIONES ANONIMAS AUTOEJECUTABLES:
+
+        /*Su sintaxis seria algo asi, pondrias la sintaxis basica de una funcion pero sin nombre y la encapsulamos en unos
+        () y despues le ponemos otros () que son los que indican ejecucion como por ejemplo en la funcion o metodo alert()
+        podriamos decir que alert seria la sintaxis basica de la funcion encapsulada en () en este ejemplo y los parentesis
+        que le siguen de alert son los otros parentesis que inidican ejecucion y el bloque de codigo de la funcion lo
+        escribiras entre las llaves, y en este caso es estrictamente obligatorio poner ; y al final, ya que si no lo 
+        escribimos podria despues darnos erroes por que podrias concatenar funciones y daria resultados no deseados */
+
+        (function () {
+            console.log("Mi primer IIFE");
+        })();
+
+        (function (d, w, c) {
+            console.log("Mi segundo IIFE");
+            console.log(d);
+            console.log(w);
+            c.log("Este es un console.log")
+        })(document, window, console);/*Aqui nos pudimos dar cuenta de que tambien podemos ponerle alias a los objetos
+        para abreviarlos y asi se hagan mas facil a la hora de escribirlos y mas rapido, es algo tambien muy importante y
+        podria resultar bastante util, ademas de que es autoejecutable que eso igual ahorra mucho tiempo.*/
+
+        //Pero hay 4 maneras para escribir las funciones anonimas autoejecutables, acontinuacion las veremos:
+
+        //Clasica
+        (function () {
+            console.log("Version Clasica.");
+        })();
+
+        //La Crockford (JavaScript The Good Parts)
+        ((function () {
+            console.log("Version Crockford.");
+        })());
+
+        //Unaria
+        +function () {
+            console.log("Version Unaria.");
+        }();
+
+        //Facebook
+        !function () {
+            console.log("Version Facebook");
+        }();
+
+    </script>
+</body>
+</html>

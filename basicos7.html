@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de JavaScript 7</title>
+</head>
+<body>
+    <script>
+        //AHORA VEREMOS LOS PROTOTIPOS EN JAVASCRIPT.
+        //P.O.O.: (Programacion orientada a objetos).
+        /*
+        Clases: Modelo a seguir.
+        Objetos: Es una instancia de una clase(una copia).
+        Atributos: Es una caracteristica o propiedad del objeto(son variables dentro de un objeto).
+        Metodos: Son las acciones que un objeto puede realizar(son funciones dentro de un objeto).
+        */
+       /*Prototipo: Es un mecanismo por el cual un objeto podra heredar de su objeto padre metodos, atributos y caracteristicas.*/
+/*
+       const animal = {
+        nombre: "Perro",
+        hace() {
+            console.log("Guaaau guaaaau");
+        }
+       }
+
+       const animal2 = {
+        nombre: "Gato",
+        hace() {
+            console.log("Miaau miaaauu");
+        }
+       }
+
+       console.log(animal, animal2);*/
+       /*Si estos dos objetos los imprimimos en la consola nos podremos dar cuenta de que, son prototipos "Object" que
+       es el prototipo mas viejo en JavaScript, a lo que quiero llegar con esto es que me base en el primer animal para
+       poder hacer el segundo, sin embargo tuve que copiar el codigo y pues eso no es funcional, viendolo de una manera
+       mas compleja, entonces ahora veremos como hacer un prototipo para apartir de ahi, seguir haciendo un conjunto de
+       objetos con ese mismo prototipo...*/
+
+       //Funcion constructora:
+
+       function Animal (nombre, genero) {
+        //Atributos:
+        this.nombre = nombre;
+        this.genero = genero;
+
+        } 
+       /*De esta manera cuando lo imprimimos en la consola sigue siendo del prototipo "Object" sin embargo ya aparecen con 
+       un constructor diferente, sin la funcion constructora tenian el contructor "Objeto" al inicio pero ahora, con la
+       funcion constructora "Animal", su constructor es esta misma, y al inicio en la consola, aparecen de esta manera,
+       puedase ver que es menos codigo el que escribiras, es mucho mas funcional, sobre todo en casos, en los que requieras
+       tener muchas instancias de un mismo tipo.*/
+
+       /*Pero tenemos un problema ya que el metodo, se esta repitiendo en cada uno de los animales, y eso con dos pues
+       no hay problema, pero supongamos un caso en el que necesitemos 1000 instancias, pues seria un duplicado de funciones
+       que seria una mala practica, ya que se haria mas pesado, pensemos en un juego, cada animal se guardaria en una
+       variable y cada variable ocuparia un espacio, al duplicar el metodo estariamos desperdiciando espacio, asi que de esta
+       manera arreglaremos eso, lo ideal seria, que los atributos los dejaremos en la funcion constructora Animal y los
+       metodos los sacaramos para despues agregarlos al prototipo no a la funcion al prototipo de la funcion.*/
+
+       Animal.prototype.hace = function () {
+            console.log("¿Como hace el animal?")
+
+            }
+
+        /*Aqui lo que hemos hecho es agregar el metodo por fuera al prototipo de la funcion, y esto lo que va hacer es que
+        cada vez que nosotros generemos una nueva variable de tipo "Animal" la funcion constructora nada mas tiene la 
+        asignacion de los atributos, y los metodos solamente van estar agregados al prototipo, eso seria para no duplicarlos
+        en las instancias, y de esa manera nuestra aplicacion estara mejor en rendimiento y en espacio en memoria.*/
+
+        /*HERENCIA:
+        -Capacidad para heredar de un objeto padre a una instancia.
+        */
+
+        //Herencia prototipica:
+
+        function Perro (nombre, genero, tamanio) { 
+            this.super = Animal;
+            this.super(nombre, genero);
+            this.tamanio = tamanio;
+        }
+
+        //Perro esta heredando de Animal:
+        Perro.prototype = new Animal();
+        Perro.prototype.constructor = Perro;
+
+        //Sobreescritura de metodos del prototipo padre en el hijo:
+        Perro.prototype.hace = function () {
+            console.log("El perro ladra.");
+        }
+
+        Perro.prototype.ladrar = function () {
+            console.log("Guaaaau guauuuuu");
+        }
+        
+        const titan = new Perro("Titan", "Macho", "Grande");
+       const lua = new Animal("Lua", "Hembra");
+       console.log(titan);
+       console.log(lua);
+
+       titan.ladrar();
+       titan.hace();
+       lua.hace();
+
+       //CLASES
+
+       class Human {
+        /*El constructor es un metodo especial que se ejecuta en el momento de instanciar la clase*/
+        constructor(name, sex) {
+            this.name = name;
+            this.sex = sex;
+
+        }
+        //Metodos: se pueden escribir de la manera literal, como en los objetos literarios.
+        saludar() {
+            console.log(`Hola soy ${this.name}  y soy del sexo ${this.sex}.`);
+        }
+       }
+
+       /*Con las clases ya no es necesario que los metodos se los pases al prototipo de la funcion manuelmente como
+       habiamos visto en las anteriores clases, por que ya con las clases JS hace esto por ti, es mucho mas rapido escribir
+       de esta manera, se entiende mejor*/
+
+       
+       let daira = new Human("Daira", "femenino");
+       console.log(daira)//Las clases simplifican la escritura solamente.
+       daira.saludar();
+
+       //¿Pero ahora con la clases como se da la herencia?
+
+       class Men extends Human {
+        constructor(name, sex, years) {
+            super(name, sex);
+            this.years = years;
+        }
+
+        saludar() {
+            console.log(`Hola soy ${this.name}.`);
+        }
+
+        despedir() {
+            console.log(`Adiooooos sigo siendo ${this.name}.`);
+        }
+       }
+
+       let rafael = new Men("Rafael", "masculino", 18);
+    console.log(rafael);
+    rafael.saludar();
+    rafael.despedir();
+
+    /*Pero OJO esto no convierte a JS en un lenguaje de programacion que la P.O.O esta basada en clases, por que JS sigue
+    siendo un lenjuage de programacion que la P.O.O esta basada en prototypes.*/
+
+    /*METODOS ESTATICOS-GETTERS-SETTERS
+    Metodo estatico- es aquel que puede ejecutarse sin necesidad de instanciar la clase y se crea anteponiendo la palabra
+    reservada "static" en el metodo que queramos que sea estatico. Y los metodos estaticos debes saber que no los vas a ver
+    en el prototipo de la clase.
+    
+    Getters y Setters- son metodos especiales que nos permiten establecer y obtener los valores de atributos de nuestra
+    clase. Una caracteristica de los getters y setters es que aunque son metodos, JS los convierte en propiedades, por lo
+    tanto los tienes que trabajar como si fueran propiedades.
+    */
+
+    class Woman extends Human{
+        constructor(name, sex, years) {
+            super(name, sex);
+            this.years = years;
+            this.lastName = null;
+        }
+
+        static queEsUnaMujer() {
+            console.log("Son personas.");
+        }
+
+        get getLastName(){
+            return this.lastName;
+        }
+
+        set setLastName(lastName) {
+            this.lastName = lastName;
+        }
+
+    }
+
+    Woman.queEsUnaMujer();/*Aqui podemos ver como se hace un metodo estatico y con la definicion vemos como se puede utilizar
+    sin necesidad de instanciar la clase Woman.*/
+
+    let teresa = new Woman("Teresa", "femenino", 17);
+    console.log(teresa.getLastName);
+    teresa.setLastName = "Suarez";
+    console.log(teresa.getLastName);
+    console.log(teresa);
+
+
+
+
+    </script>
+</body>
+</html>

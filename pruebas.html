@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pruebas 1</title>
+</head>
+<body>
+    <script>
+        //Este archivo sera para pruebas:
+
+        class VideoGame {
+            constructor(nombre, genero, lanzamiento) {
+                this.nombre = nombre;
+                this.genero = genero;
+                this.lanzamiento = lanzamiento;
+            }
+
+            info() {
+                console.log("Soy un videojuego.");
+            }
+        }
+
+        let fornite = new VideoGame("Fornite", "Shotter", 2015);
+        fornite.info();
+        console.dir(fornite);
+
+        const marcas = ["Ferrari", "Toyota", "Ford"];
+
+        let papel = "Diploma";
+
+        console.groupCollapsed("Datos random.");
+        console.log(VideoGame);
+        console.log(fornite);
+        console.log(marcas);
+        console.log(papel);
+        console.groupEnd();
+
+        console.clear();
+
+        console.table(Object.entries(console));
+    </script>
+</body>
+</html>

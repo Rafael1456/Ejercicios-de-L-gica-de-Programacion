@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de JavaScript 4</title>
+</head>
+<body>
+    <script>
+        /*Este ya es el cuarto archivo para poner mis apuntes del curso de JavaScript de Jon Mircha*/
+        //Ahora veremos los "Tipos de operadores"
+        /*Aun no vemos el tipo de dato compuesto "Clases" ya que ese lo veremos mas adelante cuando veamos paradigmas de
+        programacion y la programacion orientada a objetos*/
+
+        //Los operadores son un concepto muy importante en cualquier lenguaje de programacion.
+        
+        //1-Primero veremos los aritmeticos: + , - , *, / , % , ().
+        //JavaScript respeta la jerarquia de los operadores como en las matematicas.
+
+        let ejemplo = 5 + 5;//Aqui da el resultado de la suma.
+        let ejemplo2 = 4 - 10;//Aqui da el resultado de la resta.
+        let ejemplo3 = 3 * 2;//Aqui da el resultado de la multiplicacion.
+        let ejemplo4 = 10 / 20;//Aqui da el resultado de la division.
+        let ejemplo5 = 20 % 10;//Aqui da el modulo de la division(se refiere al residuo de la division).
+        let ejemplo6 = 5 + 10 * 20 * (29-10);/*Aqui hace las operaciones en el orden jerarjico, primero parentesis y hace la
+        resta, depues la multiplicacion con el parentesis y despues la multiplicacion fuera del parentesis y  por ultimo
+        suma el resultado de la multiplicacion con el 5,*/
+        console.log(ejemplo, ejemplo2, ejemplo3, ejemplo4, ejemplo5, ejemplo6);
+
+        //2-Operadores relacionales: > , < , >= , <= , == , === , != , !==.
+
+        let ejem = 1 > 10;//1 es mayor que 10?(mandara false).
+        let ejem2 = 1 < 10;//1 es menor que 10?(mandara  true).
+        let ejem3 = 1 >= 10;//1 es mayor o igual a 10?(mandara false).
+        let ejem4 = 1 <= 10;//1 es menor o igual a 10?(mandara true).
+        console.log(ejem, ejem2, ejem3, ejem4);
+
+        /*Dato importante
+
+        = es asignacion de variable
+        == es comparacion de valores
+        === es comparacion de tipo de dato y de valores 
+
+        la buena practica es utilizar la comparacion triple para evitar problemas*/
+
+        let ejem5 = 1 == "1";/*Esto dara (true) ya que como recordaremos hay valores que aunque no sean valores booleanos
+        tienden a dar true o false y en este caso como el "1" tiende a dar true la comparacion aunque no sean lo mismo dara
+        (true) y digo que no es igual ya que 1 esta declarado como numero y "1" esta declarado como cadena y aun asi con el 
+        operador == dara true, esto no pasaria con ===.*///Como en el siguiente ejemplo:
+        let ejem6 = 1 === "1";/*Esto dara (false) ya que aqui con el === se esta comparando el tipo de dato tambien y como
+        no son iguales aunque los dos tienden a dar true, aun asi con === dara (false).*/
+        console.log(ejem5, ejem6);
+
+        //3-Operadores de incremento y decremento: += , -= , /= , *=.
+
+        let uno = 1;
+        uno += 3;//Es como decirle a la variable uno sumale 3.
+
+        let dos = 1;
+        dos -= 3;//Es como decirle a la variable dos restale 3.
+
+        let tres = 1;
+        tres /= 3;//Es como decirle a la variable tres dividile 3.
+
+        let cuatro = 1;
+        cuatro *= 3;//Es como decirle a la variable cuatro multiplicale 3.
+
+        console.log(uno, dos, tres, cuatro);
+
+        //Ay unos operadores especiales en incremento y decremento:
+        //Se le conoce como "Operador unario": ++ , --.
+
+        let ejemploUno = 1;
+        ejemploUno ++;//Es como decirle a la variable ejemploUno agregale 1.
+
+        let ejemploDos = 1;
+        ejemploDos --;//Es como decirle a la variable ejemploDos restale 1.
+
+        console.log(ejemploUno, ejemploDos);
+        /*Tambien se puede escribir al reves "++ejemploUno;" y "--ejemploDos;" pero es mas comun primero la variable
+        y despues el operador unario es mas recomendable por que al reves puede dar resultados no deseados*/
+
+        /*4-Operadores logicos: 
+        !=Not , Niega, es decir lo que es verdadero lo vuelve falso y viceversa.
+        ||=Or , Cuando tengo dos o mas condiciones con que una se cumpla, es decir, sea verdadera el Or validara.
+        &&=And, Cuando tenga dos o mas condiciones se tienen que cumplir todas, es decir ser verdaderas para que And valide.*/
+
+        let verdadero = true;//Aqui estamos dandole le valor "true" a la variable
+        let falso = false;//Y aqui le estamos dando valor de "false"
+
+        console.log(!verdadero, !falso);/*Con el "!" que es la negacion, negamos las variables y cambian sus valores de la
+        variable verdadero de "true" a "false" y de la variable false de "false" a "true".*/
+
+        let dosCondiciones = (10 < 20)||(20 < 10);//Aqui estamos dandole dos condiciones a la variable dosCondiciones.
+        console.log(dosCondiciones);/*La primer condicion se cumple ya que 10 es menor que 20, pero la segunda no ya que 20 
+        no es menor que 10, pero aun asi la variable dara "true" ya que con "||" solo una condicion se tiene que cumplir.*/
+
+        let dosCondiciones2 = ("Hola"=== "Hola")&&(10 === 10);//Aqui estamos dandole dos condiciones a la variable dosCondiciones2.
+        console.log(dosCondiciones2);/*En este caso con && las dos condiciones que le pasamos a la variable tienen que ser verdaderas
+        para que pueda dar "true" y en este caso asi lo es, asi que esto dara "true".*/
+
+        //Y con esto terminamos de ver los operadores, pero creo que hay mas, pana Rafa recuerda mañana buscar mas en MDN
+
+        //Ahora veremos "Las estructuras de control"(Condicionales):
+        //Son aquellas que permiten controlar el flujo de nuestra programacion.
+
+        /*Veremos if, y else
+        y veremos algunos ejemplos*/
+
+        let edad = 16;
+        //let edadUsuario = parseInt(prompt("Ingresa tu edad"));
+
+        if(edad > 17) {
+            console.log("Eres mayor de edad");
+            //alert("Eres mayor de edad");
+        } else {
+            console.log("Eres menor de edad");
+            //alert("Eres menor de edad");
+        }
+
+        /*Mucho ojo, con los operadores que vas a asignarles a tus condicionales, ya que si cambia mucho y tienes que ver 
+        qur se vayan a ejecutar bien, por ejemplo, en lo anterior pusimos el operador "mayor que" y entonces tuvimos un numero
+        menor al de la mayoria de edad para que mayor que tomara o como si le dijeramos si edad es mayor a 17 es mayor de edad,
+        pero, si no es menor de edad, pero si usamos el operador mayor o igual que (>=) cambia la cosa ya que el numero que vamos
+        a comparar esta incluido en el true ya que estamos diciendole tambien que si es igual tambien sa valida la condicion, 
+        y tenemos que tener cuidado por que podemos tener errores de logiga, por ejemplo:*/
+
+        let edad2 = 17;
+
+        if( edad2 >= 17) {
+            console.log("Eres mayor de edad");
+        } else {
+            console.log("Eres menor de edad");
+        }
+        /*Aqui habria un error de logica ya que la mayoria de edad es a los 18 en este caso y como estamos utilizando 
+        el mayor o igual que, no le debimos a ver puesto 17 ya que va a validar que si tiene 17 años es mayor de edad,
+        cuando realmente no es asi, deberiamos escribirlo asi:*/
+
+        let edad3 = 17;
+
+        if( edad3 >= 18) {
+            console.log("Eres mayor de edad");
+        } else {
+            console.log("Eres menor de edad");
+        }
+
+        //Y aqui ya solucionamos el problema de logica y esta bien.
+
+        /*Ahora veremos if, else if y else
+        y veremos algunos ejemplos.*/
+
+        /*Horarios para saludar en Mexico
+        0hrs-5hrs= "Dejame dormir jaajaja"
+        6hrs-11hrs= "Buenos dias"
+        12hrs-18hrs= "Buenas tardes"
+        19hrs-23hrs= "Buenas noches"
+        Utilizamos opcion de 24 horas ya que JavaScript asi lo tiene predeterminado*/
+
+        for(let i=0; i < 24; i++) {
+            let hora = i;
+            if( hora >= 0 && hora <=5) {
+                console.log("Dejame dormir jajajaja");
+            } else if ( hora >= 6 && hora <= 11) {
+                console.log("Buenos dias");
+            } else if ( hora >= 12 && hora <=18) {
+                console.log("Buenas tardes");
+            } else {
+                console.log("Buenas noches");
+            }
+        }
+
+        /*Aqui lo escribi con if, else if y else y utilice operadores compuestos(>= , <=) pero tambien utilzando if, else if
+        y else puedo escribirlo con los operadores normales relacionales tambien, nada mas que tengo que ajustar las horas
+        para que no haya problem, como en el siguiente ejemplo:*/
+
+        let hrs = 19;
+
+        if(hrs < 6) {
+            console.log("Dejame dormir jaajaja");
+        } else if (hrs > 5 && hrs < 12) {
+            console.log("Buenos dias");
+        } else if (hrs > 11 && hrs < 19) {
+            console.log("Buenas tardes");
+        } else {
+            console.log("Buenas noches");
+        }
+
+        /*Asi de esta manera lo tendria que escribir para mi es un poco mas confuso con los normales como en este ejemplo,
+        siento que los complejos son mucho mas legibles, pero eso ya depende de ti*/
+
+        //Veremos una simplificacion del if , else, que se le conoce como "Operador ternario":
+        //Que su sintaxis basica es esta Operador ternario (condicion) ? verdadero : falsa.
+
+        let eresMayor = (edad >= 18) ? "Eres mayor de edad" : "Eres menor de edad";
+        console.log(eresMayor);//En este caso se  ejecutaria el bloque de falso ya que edad = 16. pero si fuera 18 o mas se  ejecutaria el bloque verdadero.
+        
+        //Ahora veremos el switch-case:
+        /* Este nos servira cuando tengas una situacion con diferentes valores para una variable, por ejemplo:
+        Domingo-0
+        Lunes-1
+        Martes-2
+        Miercoles-3
+        Jueves-4
+        Viernes-5
+        Sabado-6
+        */
+       let dia = 2;
+
+       switch (dia) {
+        case 0://Los cases es como si fueran el incio del bloque de codigo que se ejecutara.
+            console.log("Domingo");
+            break;
+        case 1:
+            console.log("Lunes");
+            break;
+        case 2:
+            console.log("Martes");
+            break;
+        case 3:
+            console.log("Miercoles");
+            break;
+        case 4:
+            console.log("Jueves");
+            break;
+        case 5:
+            console.log("Viernes");
+            break;
+        case 6:
+            console.log("Sabado");
+            break;/*Los breaks es como si fueran el final del bloque de codigo que se ejecjutara y para que se cierre ya que 
+            si no lo cierras se ejecutara todo lo demas que esta en el switch tambien.*/
+        default://El default es el caso predeterminado en caso de que no se de como opcion nigun otro caso existente.
+            console.log("Dato no valido");
+            break;
+       }
+
+       //Y hasta aqui terminariamos las estructuras que nos ayudan a evaluar condiciones.
+
+
+
+        
+
+
+        
+
+    </script>
+    
+</body>
+</html>

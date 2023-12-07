@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de JavaScript 6</title>
+</head>
+<body>
+    <script>
+        /*Ahora veremos los "objetos literales": es una nueva forma de escribir propiedades(atributos) y metodos icluso de
+        asignarlos en los objetos desde el año 2015.*/
+
+        //Esta es la manera convencional de escribir los objetos:
+
+        let nombre = "Serafina";
+        let edad = 13;
+
+        const mascota = {
+            nombre: nombre,
+            edad: edad,
+            ladrar: function () {
+                console.log("guaaaau guaaaaau");
+            }
+        }
+        console.log(mascota);
+        mascota.ladrar();
+
+        //Aqui ya lo escribiremos como un objeto literal:
+
+        const pet = {
+            nombre,/*En las propiedades(atributos) solamente se simplifica, si ya tenemos una variable con el mismo nombre
+            que le pondremos a la propiedad del objeto pues solamente la ponemos una vez y la separamos con , y si despues
+            queremos poner otra propiedad que no tenemos una variable con ese nombre pues lo ponemos normal y listo, se
+            pueden combinar.*/
+            edad,
+            tez: "Blanca",
+            ladrar() {
+                console.log("woooof wooof woooof");
+            }/*Y en los metodos que son las funciones en los objetos, pues la nueva manera para escribirlos, es quitando
+            los dos puntos del metodo (:), quitar la palabra clave "function* y listo, esa es la nueva forma.*/
+        }
+        console.log(pet);
+        pet.ladrar();
+        
+        /*Esto nos va a servir, para escribir mas rapido el codigo y simplificarlo, es como si fuera literal el objeto, 
+        sin tener que reescribirlo o algo asi, pero tiene esa funcionalidad y es muy util.*/
+
+        //Pasaremos a ver los "Parametros REST" y el "Operador Spread":
+
+        /*Parametros REST: son una forma de virtualmente ir agregando parametros infinitos, ya sea a una funcion o dentro 
+        de una variable, que hay un arreglo y no sabes cuantos valores vayas a recibir y ya despues con esos valores, haras
+        operaciones o lo que tengas que hacer, para definirlos es de la siguiente manera:*/
+
+        function suma (a,b, ...c) {
+            let resultado = a + b;
+
+            c.forEach(function (n){
+                resultado += n
+            }); /*Para que funcionen los parametros REST deben estar acompañados de un .forEach() o un forof o icluso de
+            cualquier metodo o atributo de un array ya que el parametro Rest es como si fuera un array.*/
+            return resultado;
+        }
+        console.log(suma(9,10));
+        console.log(suma(9, 10, 40, 50, 100, 3, 6 , 8));
+        /*Una vez puesto el parametro REST, puede o no ser infinito, incluso si no lo pones no pasa nada, como en el primer
+        console y si lo pones puedes poner numeros infinitos como en el segundo console.*/
+
+        /*Ahora veremos el "Operador Spread" o de propogacion: nos va a permitir que cuando una expresion la tengamos que 
+        expandir en una situacion en la que tengamos multiples o tengamos que guardar multiples argumentos o elementos lo 
+        podamos hacer*/
+
+        //El operador spread es el mismo que el parametro REST, es anteponer ...
+
+        const arreglo = [1, 5, 10, 20, 30, 50];
+        const arreglo2 = [100, 200, 300, 400, 500];
+        //Aqui tenemos dos arreglos simples y comunes, si quisieramos agregarlos en otro arreglo seria con el operador Spread:
+
+        const arregloSinSpread = [arreglo, arreglo2];
+        /*Aqui estariamos agregandolos por separados es un arreglo que tiene otros dos de 5 elementos dentro de el, pero si lo
+        que queremos es que se agreguen como si fuera uno solo tendriamos que usar el "Operador Spread" y lo hariamos de esta 
+        manera: */
+
+        const arregloConSpread = [...arreglo, ...arreglo2];
+        console.log(arregloConSpread);
+        /*Y asi de esta manera anteponiendo los puntos suspensivos en los datos que vamos a guardar ya no se guardan como
+        si fueran arreglos si no como elementos, y se vuleven un mismo arreglo dentro del nuevo arreglo, esto puede funcionar
+        en cualquier otro dato como variable u objeto y en las funciones estan los parametros REST que se utilizan de la misma
+        manera anteponiendo los (...) suspensivos.*/
+
+        let primo = "Paco";
+        let primo2 = "Miclo";
+
+        const primos = [...primo[2], ...primo2[0]];
+        console.log(primos);
+        /*Si guardamos o propagamos strings como en este caso nos daremos cuenta que se van a pasar por caracteres, uno
+        por uno, en el arreglo, pero tambien podemos decirle especificamente que caracter del string o elemento del array
+        queremos propagar, usando la notacion del corchete y poniendo el indice, como en el anterior ejemplo.*/
+
+        const objetoTaza = {
+            tamaño: "Grande",
+            color: "Azul"
+        }
+
+        let taza = "Tazaazulgrande";
+
+        const objetoConSpread = {
+            ...objetoTaza,
+            ...taza,
+        }
+        console.log(objetoConSpread);
+        /*Con los objetos se utiliza asi sin propiedad, solamente se anteponen los (...) suspensivos y la constante o
+        variable que quieras propagar, automaticamente JS le dara una propiedad, dependiendo el tipo de dato que sea.*/
+
+        //Ahora veremos las "Arrow Functions": es una nueva forma de definir funciones anonimas que sean expresadas.
+        //Esta es una funcion anonima expresada normal:
+
+        const despedida = () => console.log("Nos vemos byeeee");
+        despedida();
+        /*Para escribir una "Arrow Function" en este ejemplo solo tienes que quitar la palabra clave function y poner (=>)
+        despues de los parentesis y asi se convierte en un "Arrow Function" cuando hay solo una linea de codigo a ejecutar
+        se puede omitir las llaves, como en este caso, por que no se necesitan, pero solo cuando hay solo una linea de
+        codigo.*/
+
+        const despedida2 = nombre => console.log(`Byeeee ${nombre}`);
+        despedida2("Maria");/*Aqui ya le pase un argumento y se hace de la misma manera, sigue sin llaves por que sigue
+        habiendo solo una linea de codigo a ejecutar, pero hay otra caracteristica cuando ya le pasas un parametro a la
+        "Arrow Function" ya no son necesarios los parentesis, pero solo cuando tenga uno, ya teniendo dos si se le tienen
+        que poner los parentesis.*/
+
+        /*const multiplicacion = function (num1, num2) {
+            return num1 * num2;
+        }*/
+
+        //La anterior funcion que ya fue comentada quedaria asi como Arrow Function:
+
+        const multiplicar = (num1, num2) => num1 * num2;
+        console.log(multiplicar(3, 9));/*Otra caracteristica de las "Arrow Functions" es que dan un return implicito,
+        despues de (=>) y pues por ende ya no es necesario poner el return como en la funcion anonima expresada anterior, 
+        esta es otra caracteristica que hace a una "Arrow Function" mas recomendable.*/
+
+        const funcionDeVariasLineas = () => {
+            console.log("Primer linea");
+            console.log("Segunda linea");
+            console.log("Tercer linea");
+        }
+        funcionDeVariasLineas();/*Ya cuando la "Arrow Function" va a tener mas de una linea para ejecutar, se le tienen que
+        poner obligatoriamente las llaves {} para que pueda seguir funcionando, se tiene que respetar el cuerpo de la funcion.*/
+
+        /*Tambien donde es muy interesante el uso de Arrow Function es en el metodo .forEach() de los arreglos que recibe una
+        funcion como parametro.*/
+         
+        //De la manera normal quedaria asi:
+        const nombres = ["Kass", "Alejandra", "Paulina", "Jaqueline", "Bertha"];
+
+        nombres.forEach(function (elemento, indice) {
+            console.log(`${elemento} esta en la posicion ${indice}.`);
+        });
+        
+        //Esta seria la manera con una Arrow Function:
+        nombres.forEach((element, index) => console.log(`Hola ${element} estas en la posicion ${index}.`));
+        /*Como podemos ver con la Arrow Function es mucho mas legible, simple y limpio el codigo, es una manera de escribir
+        las funciones anonimas expresadas de una manera mas entendible.*/
+
+        function perro () {
+            console.log(this);
+        }
+        perro();/*Otra caracteristica importante de las Arrow Functions es que son capaces de omitir el contexto donde estan
+        para heredar el contexto en el que su objeto padre fue declarado, por ejemplo en la anterior funcion mandamos al this
+        a la consola, y nos imprime el contexto donde esta la funcion que es elemento global(window), pero si lo hicieramos asi, en
+        un objeto o arreglo, nos mandaria el contexto del objeto u arreglo, pero si las funciones dentro de el objeto u arreglo
+        son Arrow Functions, heredan el contexto donde estan declarados los objetos u arreglos, que nuevamente es el global
+        (window), por ejemplo:*/
+
+        /*const frutas = {
+            1: "Manzana",
+            2: "Pera",
+            objeto: function () {
+                console.log(this);
+            }
+        }
+        frutas.objeto(); En este caso this cuando lo mandamos a la consola, imprime el contexto en el que esta, que es
+        el objeto por lo tanto imprime el obejeto, pero si la funcion la escribieramos con Arrow Function el this heredaria
+        el contexto del objeto que es el global.*/
+
+        //De esta manera hereda el contexto del objeto:
+
+        const frutas = {
+            1: "Manzana",
+            2: "Pera",
+            objeto: () => console.log(this)
+        }
+        frutas.objeto();//La Arrow Function hereda el contexto del objeto que es el global(window).
+
+        //Esto es mas importan te en React, que es una libreria de JS. Pero eso ya lo veremos mas adelante.
+
+        
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de JavaScript 5</title>
+</head>
+<body>
+    <script>
+        //Ahora emepzaremos en el archivo basicos5 para el curso de JavaScript.
+
+        //Veremos las estructuras de datos llamadas loops o bucles:
+        //Ejemplo de un bucle while:
+
+        let contador = 0;
+
+        while (contador <= 10) {
+            console.log("while" + contador);
+            contador++;
+        }
+
+        //Ejemplo de un bucle do-while:
+
+        do{
+          console.log( "do-while" + contador);
+          contador++;
+        } while (contador <= 10);
+
+        /*Aqui si lo escribimos de esta manera va a pasar que la variable contador va a ser primero su funcion en el bucle
+        while, saliendo ya valiendo 11, por que se hizo el bucle y termino cuando fue 11 ya que no fue ni igual
+        ni menor a 10  por la condicion que le puse, pasa al bucle do-while y lo que sucede y que es la gran diferencia 
+        de utilizar un bucle while o un bucle do-while, es que el bucle do-while por lo menos se hara una vez, aunque la
+        condicion no sea verdadera, en este caso la condicion ya no es verdadera ya que le puse la misma que en el bucle while
+        por lo tanto es 11 y la condicion es falsa pero como el bucle do-while por los menos se hace una vez, imprime en la 
+        consola el numero 11.*/
+
+        //Ejemplo de un bucle for:
+
+        for (let i = 0; i <= 10; i++) {
+            console.log(i + "for");
+         }
+
+         const nombres = ["Rafael", "Pablo", "Samuel", "Sebastian", "Carlos"];
+
+         for ( let i = 0; i < nombres.length; i++) {
+            console.log(nombres[i] + " " + "Padilla");
+         }
+
+         //Despues del 2015 vinieron variables del bucle for que son: forin y forof.
+         //Ejemplo del bucle forin;
+
+         /*El forin es un loop que nos va a permitir recorrer o iterar las propiedades de un objeto, digamos que es un bucle
+         for especial para los objetos.*/
+
+         const rafael = {
+            nombre: "Rafael",
+            apellido: "Padilla",
+            edad: 18
+         }
+
+         for (const propiedad in rafael) {
+            console.log(propiedad);//Esto nos imprimira las propiedades del objeto "rafael"
+            //Si quisieramos que tambien nos imprimiera los valores de las propiedades, seria asi:
+            console.log(`${propiedad} ${rafael[propiedad]}`);
+            /*Y esto nos imprime ya las propiedades con sus valores, en este caso en el bucle forin, vamos a necesitar el uso
+            de backticks para poder imprimir en la consola los valores de las propiedades del objeto, con la interpolacion de
+            variables ${}, y a diferencia de como habiamos visto cuando vimos los objetos, que para imprimir en la consola
+            los valores de las propiedades era con la notacion del . en este caso no nos sirve en el forin necesitaremos
+            la notacion de los [] para que podamos acceder a los valores de las propiedades de nuestro objeto y se escribe
+            asi: ${objeto[nombre de la constante]} es un poco confuso pero se tiene que escribir asi.*/
+        }
+
+        //Ejemplo del bucle forof;
+
+        /*El forof es un loop que nos va a permitir recorrer o iterar todos los elementos de cualquier objeto que sea iterable
+        en JavaScript, recordemos que en JavaScript todo es un objeto, asi que podria ser un arreglo o un string, a diferencia
+        el forin que es un bucle solo para los objetos.*/
+
+        for (const elemento of nombres) {
+            console.log(elemento);/*En este caso pues utilize el arreglo que ya tenia hecho "nombres" y pues para imprimir
+            los elementos de el arreglo "nombres" solo tuve que poner en la consola la variable en la que se guardarian los
+            elementos de mi arreglo, en este caso le puse "elemento como nombre" pero puede ser cual sea, aunque es buena 
+            practica poner algo relacionado para que se entieda.*/
+        }
+
+        //Ahora veremos "Manejo de errores"
+
+        try {
+            console.log("En el try se agrega el codigo a evaluar.");
+        } catch (error) {
+            console.log("En el catch captura cualquier error surgido o lanzado en el try.");
+        } finally {
+            console.log("El finally se ejecutara siempre al final de un bloque try-catch, sin importar si hay error o no.");
+        }/*En este caso en la consola se imprimen el try y el finally ya que en el bloque del try no hubo error, por ende
+        se ejecuta y como no hubo error el catch no captura nada, por ende su bloque no se ejecuta y el finally haya o no 
+        error siempre se ejecutara al final, esto nos ayudara cuando tengamos que poner algun aviso o un dato en caso de que
+        haya algun error.*/
+
+        //Si hacemos esto cambia la cosa:
+
+        try {
+            holaquetal;
+            console.log("Primer texto del try");
+        } catch (error) {
+            console.log("Si hay error el bloque catch se ejecutara");
+            console.log(error); //Puedo mandar a imprimir el error para ver cual es, ya que catch la captura.
+        } finally {
+            console.log("Este siempre se ejecutara.");
+        } /*En este caso puse intencionalmente un error al principio del bloque try, si hubiera habido algo antes del error
+        se hubiera ejecutado sin problema todo lo que esta despues del error no se ejecuta, en este caso nada del bloque try
+        se ejecuto ya que puse el error al inicio, por ende no se ejucto nada, sin embargo en el bloque catch si imprimio el 
+        el console que le puse y aparte le añadi un console para que mostrara cual es el error y haciendo eso, en la consola 
+        se imprimira para poder ver cual es el error y el bloque finally justamente como el mensaje que puse en su bloque, haya
+        o no error ese siempre se ejecutara:*/
+
+        /*Va haber ocasiones en las que necesitemos mandar nosotros mismos un mensaje de error, por ejemplo si queremos unos
+        datos en numero y llegan como texto, podriamos mandar un mensaje de error en ese contexto, ¿pero como lo hacemos?, los
+        veremos siguientemente.*/
+
+        try {
+            let numero = "Hola";
+            if (isNaN(numero)) {
+                throw new Error("El caracter introducido no es un numero");
+            }
+            console.log(numero * numero);
+
+        } catch (error) {
+            console.log(`Se produjo un error: ${error}`);
+        } finally {
+            console.log("Se valido el numero.")
+        }/*En este caso ya añadi un error personalizado por mi, en caso de que en la variable numero, no haya un numero
+        se va a lanzar el mensaje de el error, para ese se utiliza "throw" para lanzar expeciones, y se va a lanzar el
+        mensaje de error, en caso de que no sea numero y catch la capturara y lo imprimira en la consola, hay 
+        muchos tipos de errores en este caso utilizamos el general, con su constructor new.*/
+
+        /*El manejo de errores es muy importante, ya que nos ayudara a validar datos, sobre todo cuando le pides datos al
+        usuario, puedes encerrar los datos en estructura try-catch para corroborar que los datos esten bien ingresados, 
+        tambien el docente Jon nos dice que sirve para cuando intentas obtener datos de una API, esto nos ayudara, a tener
+        bien identificados los errores y si personalizamos los errores, sera mejor por que entenderias de que manera o por
+        que razon se esta dando el error y ahi es donde entran tambien las APIs, es mas facil depurar con errores, personalizados
+        y tu codigo se ve mas elegante, el finally no se utiliza mucho, pero en ciertos casos, puede ser muy util.*/
+
+        /*Ahora veremos mas a fondo las palabras reservadas "break" y "continue":*/
+
+        //La funcion del break es salirse completamente de la estructura en la que esta, como en este ejemplo:
+
+        const frutas = ["Jicama", "Maracuya", "Piña", "Fresa", "Durazno"];
+
+        for(let i = 0; i < frutas.length; i++) {
+            console.log(frutas[i]);
+            if(frutas[i] === "Piña") {
+                break;/*En este ejemplo estoy utilizando el break para salirme del bucle for, mediante una condicion con el
+                if, y cuando esa condicion es verdadera automaticamente se ejecuta el break y sale del bucle*/
+            }
+        }
+
+        /*La funcion del continue es omitir un bloque de codigo en una estructura de control, a diferencia del break
+        que se sale completamente, el continue solamente omite la parte deseada y la estructura de control sigue
+        ejecutansode, como en este ejemplo:*/
+
+        for(let j = 0; j < frutas.length; j++) {
+            if(frutas[j] === "Fresa") {
+                continue;/* En este ejemplo estoy utilizando el continue para que cuendo la iteracion en la que este el bucle
+                sea "Fresa" salte esa iteracion y no la imprima, y siga con el bucle, para eso sirve el continue, puede ser muy
+                util*/
+            }
+            console.log(frutas[j]);
+        } 
+
+        /*Ahora veremos la "destructuracion" que es: una forma de asignar valores sobre todo a objetos y arreglos, esto
+        principalmente nos ayudara escribir de manera mas sencilla nuestro codigo, no tendremos que escribir mucho con la
+        destructuracion*/
+
+        const numeros = [1, 2, 3];
+        
+        console.log("Sin destructuracion");
+
+        //Sin destructuracion: podemos asignarles los valores de los elementos del arreglo a las variables de esta manera.
+        let uno = numeros[0],
+         dos = numeros[1],
+         tres = numeros[2];
+         console.log(uno, dos, tres);
+        /*De esta manera ya tendria asignado cada uno de los valores en la variables, pero como podemos ver es mucho codigo
+        y podemos mejorarlo con la destructuracion*/
+
+        console.log("Con destructuracion");
+
+        //Con destructuracion:
+        const [ one, two, three] = numeros;
+        console.log(one, two, three);
+        /*Tambien de esta manera ya tendria asignados los valores del arreglo en las variables, y con la destructuracion
+        como podemos verlo es mucho mas sencillo de escribir y mas elegante*/
+
+        /*Si destructuturamos un objeto tiene ciertas reglas, a diferencia de los arreglos los nombres de las variables
+        a las cuales les asignaremos los valores de las propiedades del objeto tienen que ser los mismos que las propiedades,
+        ya que si ponemos otros nombres diferentes marcara o nos saltara undefined, y en este caso no importa el orden en que 
+        las escribamos cuando vayamos a destructurarlo por eso mismo tienen que ser los mismos nombres para que JS sepa donde
+        buscar cada propiedad y sepa que valor le tiene que asignar, por ejemplo: */
+
+        const yogurt = {
+            marca: "Yoplait",
+            sabor: "Piña",
+            contiene: "330g"
+        }
+
+        //Ahora vamos a destructurar este objeto:
+
+        const {marca, contiene, sabor} = yogurt;
+        console.log(marca, sabor, contiene);
+        /*Y aqui ya esta destructurado el objeto, es muy sencillo, y recordemos que solamente tienen que tener los mismos
+        nombres que las propiedades del objeto, pero pueden ir desordenados, eso no marca error por que JS sabe que asigarle
+        de ahi lo importante de ponerle los mismos nombres, en los arreglos si importa el orden ya que como los vayas
+        asignando, iran tomando los valores, para el primero el indice 0, para el segundo el indice 1 y asi sucesivamente.*/
+
+        
+
+
+        
+    </script>
+</body>
+</html>

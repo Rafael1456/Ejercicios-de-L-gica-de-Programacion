@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos JavaScript 2</title>
+</head>
+<body>
+    <script>
+        //Este otro archivo lo habro para que no este todo junto en un mismo archivo y lo pueda relacionar mejor en un futuro
+        //Ahora veremos el tipo de dato "numbers" o "numeros"
+        
+        let a = 2;
+
+        //Tambien lo podemos declararlo con su constructor 
+
+        let b = new Number(1);
+        console.log(a,b);
+
+        let c = 7.19;
+        console.log(c.toFixed(1));
+        console.log(c.toFixed(5));
+
+        //Como lo habiamos mencionado anteriormente con los strings, los datos numericos tambien tienen propiedades y metodos
+        //En este ejemplo utilizamos el .toFIxed() que es un metodo que nos va a servir para definir cuantos numeros decimales va a tener nuestro numero
+        //Por ejemplo con el 7.19 si le ponemos que solo tendra uno (c.toFixed(1)) mostrara 7.2 ya que redondea para que solo tenga un numero decimal
+        //Y si le ponemos que tendra cinco (c.toFixed(5)) mostrara 7.19000 agrega los tres ceros para que haya cinco numeros decimales
+
+        console.log(parseInt(c));
+        console.log(parseFloat(c));
+        
+        //Estos son otros dos metodos para los datos numericos, que cuando les pones como parametro un numero, parseInt te devolvera la parte entera del numero y parseFloat la parte decimal
+        //Por ejemplo nos pueden servir de esta manera
+        //Si el numero que tenemos esta declarado como string
+
+        let d = "5.6";
+
+        //Podemos ver que es un numero pero esta declarado como string, y no como number
+        //Aqui puede aver un problema si despues quieres hacer una operacion aritmetica, para eso nos sirven estos metodos anteriores mencionados
+
+        console.log(a+d);
+
+        //Aqui estamos sumando los numeros pero en la consola se pondra 25.6 no se sumaron los numeros, se concatenaron por que automaticamente la variable (a) tambien paso a ser string y por ende no se sumo se concateno con el otro numero
+        //Aqui es cuando entran estos metodos
+
+        console.log(a + parseFloat(d));
+        console.log(a + parseInt(d));
+        
+        //Ya en este caso ya ahora si se suman ya que los metodos hacen que de ser string la variable (d) pasa a ser un numero, con parseInt pasa como 5 ya que devuelve solo la parte entera y con parseFloat pasa como 5.6 ya que tambien devuelve su parte decimal
+        //En este caso estaria mucho mejor el parseFloat ya que en la variable d hay un numero decimal
+        //Tambien para esto sirven estos metodos
+        
+        //Hay una pequeña diferncia en los metodos que vimos en este caso, en .toFixed() y con parseInt() y con parseFloat()
+        //La diferencia que hay es que por ejemplo .toFixed() empezo con la variable de esta manera c.toFixed()
+        //Y los parse empiezan asi parseFloat(c) y al final en el parametro va la variable
+        //Debes tener en cuenta que los tres son metodos la unica diferencia es que los parseFloat() y parseInt() cuelgan del constructor (Number) y el .toFixed() no
+        //Por eso el .toFixed() se escribe asi: c.toFixed() y los parseInt y parseFloat se escriben asi: parseInt(d) y parseFloat(d)
+        //Siendo ya mas formales se escribirian asi Number.parseInt(d) y Number.parseFloat(d) pero no es muy comun ya que JavaScript ya sobreentiende esto y no es necesario poner el constructor
+        //Y a eso me refiero con que son metodos que cuelgan del contructor y el otro no
+
+        //Ahora veremos los valores booleanos
+
+        let verdadero = true;
+        let falso = false;
+
+        console.log(typeof verdadero, typeof falso);
+        // Tambien podriamos escribirlos con su constructor pero no es muy comun y es mas largo seria de esta manera
+
+        let v = Boolean(true);
+        let f = Boolean(false);
+
+        console.log(v,f);
+
+        //Ahora para lo que si nos sirve el constructor Boolean es para aquellos datos que no son verdaderos o falsos asi como tal pero que tienden a dar true o false, como por ejemplo:
+
+        console.log(Boolean("")); //Este dara false
+        console.log(Boolean(0)); //Este igual dara false
+        console.log(Boolean(3.14)); //Este dara true
+        console.log(Boolean(" ")); //Este dara true tambien
+
+        //Y asi como estos hay mas ejemplos, lo podemos ver en MDN, esta seria una mejor funcion para el constructor Boolean
+        //A los que tienden a dar true se le conocen como "Truthy"
+        //A los que tienden a dar false se le conocen como "Falsy"
+
+        //Ahora veremos los valores "undefined", "null", "NaN"
+        //Como primer dato es que estos valores primitivos son casos muy particulares de JavaScript
+
+        //Tanto null como undefined van hacer valores de variables no definidas
+
+        let indefinida; //undefined indica que no se ha inicializado una variable y que el valor esta ausente
+        console.log(indefinida);
+
+        //Esto para que JavaScript la detecte como "undefined"
+
+        let nulo = null; //null es un valor especial que indica la ausencia de un valor
+        console.log(nulo); 
+
+        //Esto para que de el valor de "null"
+        //La diferencia esta en que "undefined" es un valor dado por JavaScript al no definir la variable y "null" es un valor dado intencionalmente por el programador
+
+        //NaN significa "Not a Number"
+        //La consola nos dara este valor cuando queramos hacer una operacion aritmetica y un valor que utilizemos no sea un numero
+
+        let noEsUnNumero = "hola" * 3.7;
+        console.log(noEsUnNumero);
+
+        //Como en este caso, esto dara "NaN" ya que JavaScript esta detectando que un valor no es un numero
+        //Con esto cerramos los datos primitivos
+
+        //Empezamos con los tipos de datos compuestos
+
+        //Veremos Funciones
+        //Puede o no recibir datos(parametros)
+        //Puede o no devolver valores dependiendo el caso
+        //Son bloques de codigo autocontenido, es decir, que tienen su propio contenido independientemente del ambito global
+        //Las funciones son muy importantes en JavaScript ya que son muy poderosas, ya que pueden ser asignadas a un valor, pasarse como argumentos y usarse como valor de retorno
+
+        //Hay dos maneras de utilizar una funcion: de manera declarada y de manera expresada
+
+        //Funcion Declarada
+
+        function estoEsUnaFuncion () {
+            console.log("Uno");
+            console.log("Dos");
+            console.log("Tres");
+        }
+
+        //Aqui ya esta declarada la funcion pero por si sola no se ejecuta se tiene que llamar y a eso se le llama:
+        //Invocacion de Funcion
+
+        estoEsUnaFuncion();
+        estoEsUnaFuncion();
+        estoEsUnaFuncion();
+        estoEsUnaFuncion();
+
+        //En este ejemplo podemos ver como una funcion puede o no recibir parametros y puede o no devolver valores
+        //Esta funcion no recibe parametros y tampoco devulve valores
+        //Otro dato importante es que se puede utilizar las veces que queramos, en este caso lo hicimos 4 veces
+
+        function unaFuncionQueDevuelveValor () {
+            console.log("Hola, te quiero mucho");
+            return "La Funcion a retornado un texto";
+        }
+        let valorDeFuncion = unaFuncionQueDevuelveValor();
+        console.log(valorDeFuncion);
+
+        //En este caso retorna la cadena de texto y despues la guardamos en una variable y las mostramos en la consola 
+        /*Algo a tener en cuenta es que una ves escrita en nuestra funcion la palabra reservada "return" apartir de ahi se acabara la funcion,
+         ya que si escribimos mas codigo en la funcion despues del return, JavaScript lo ignorara y no lo ejecutara*/
+
+         function saludar (nombre,edad) {
+            console.log(`Hola mi nombre es ${nombre} y tengo ${edad} años.`);
+         }
+
+         saludar("Rafael", 18);
+        //En este caso, esta es una funcion que si esta recibiendo parametros, pero podemos ver que no esta retornando ningun valor
+        //En caso de que no defina las paramestros marcara undefined
+
+        saludar();
+        //Pero tambien existe una manera de definir los parametros y que esten predeterminados, en caso de que no les demos valor
+
+        function saludar2 (nombre = "Luis", edad = 18) {
+            console.log(`Me llamo ${nombre} y cumplo ${edad} años de edad.`);
+        }
+
+        saludar2();
+        //Asi de esta manera aunque no le de valor a los parametros, utilizara los parametros que ya deje como predeterminados
+        //A estos se le conocen como parametros predeterminados
+
+        //Funciones declaradas VS funciones expresadas
+
+        funcionDeclarada(); /*Aqui estamos llamando a la funcion antes de que fuera declarada y esto no marca error, ya
+        que ya JavaScript con el "Hoisting" manda arriba la funcion y puede ser llamada antes de haber sido declarada*/
+
+        function funcionDeclarada () {
+            console.log("Esto es una funcion declarada puede invocarse en cualquier parte de nuestro codigo incluso antes de ser declarada");
+        }
+
+        funcionDeclarada(); //Asi que una funcion declarada puede ser llamada en cualquier parte de nuestro codigo
+
+        //Ahora veremos las funciones expresadas
+        //Nos referimos a una funcion expresada cuando guardamos una funcion en un variable
+        //A las funciones que no tienen nombre se les conocen como funciones anonimas
+
+        const funcionExpresada = function () {
+            console.log("Esto es una funcion expresada es decir, una funcion que se le ha asignado como valor a una variable");
+            /*Una gran diferencia es que la funciones expresadas no pueden ser llamadas antes de su inicializacion, como podiamos
+            hacerlo con las funciones declaradas esto es una gran diferencia entre estas funciones*/
+        }
+
+        funcionExpresada(); /*Aqui estoy llamando a la funcion con el nombre de la varibale ya que no es necesario
+        agregar un nombre a la funcion, y pues se toma como una funcion anonima*/
+
+        
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

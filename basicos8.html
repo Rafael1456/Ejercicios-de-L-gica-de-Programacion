@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de JavaScript 8</title>
+</head>
+<body>
+    <script>
+        //OBJETO CONSOLE:
+
+        console.log(console);
+        /*Console es un objeto propio de JS que lo hemos venido utilizando con su metodo .log() en todo o que lleva del
+        curso para mostrar lo que esta pasando en nuestro codigo en la consola, sin emabargo .loh() no es su unico metodo
+        tiene muchos mas, si lo mandamos a la consola, veremos todos los metodos que tiene, y que sirven para distintas 
+        cosas, por ejemplo este que es para que en la consola, en ves de que se ejecute un mensaje normal, ejecutare un 
+        mensjae de error:*/
+
+        console.error("Algo salio mal, se produjo un error:");
+        /*Lo que imprimira en la consola es un mensaje de error, como cuando el navegador mismo detecta uno, eso es lo que
+        pasa con este console y su metodo .error() pero esta este otro que en ves de errores es para dar avisos:*/
+
+        console.warn("Cuidado, esto es un aviso:");
+        /*Y lo que imprime en la consola, es otro mensaje pero en ves de un error o un simple mensaje, lo pinta de amarillo
+        señalandolo como un aviso, algo muy parecido como con el metodo .error(), warn es como si fuera warning, que en
+        español seria "advertencia"*/
+
+        console.info("Esto es un mensaje informativo.");
+        /*El metodo .info() en el console, es igual para mandar a la consola un mensaje, pero en este caso, es un mensaje
+        informativo, para dar informacion publica en nuestro progarama.*/
+
+        console.log("Esto es un registro de todo lo que ha pasado en nuestra aplicacion.");
+        /*Normalmente se utiliza el metodo .log() para ir checando lo que va pasando en el codigo de la aplicacion y
+        corroborar que todo esta saliendo como tu quieres. Como en estos ejemplo de acontinuacion:*/
+
+        let name = "Rafael";
+        let lastnames = "Vazquez Padilla";
+        let years = 18;
+        /*Estas variables las podemos imprimir cada una en un console.log(), como veniamos haciendo en el curso, para
+        corroborar que no estan mal declaradas ni tienen algun error*/
+        console.log(name);
+        console.log(lastnames);
+        console.log(years);
+        //Pero tambien lo podemos hacer en una misma linea de codigo, con un solo console.log(): separando con (,).
+        console.log(name, lastnames, years);
+        /*Tambien veremos que cuando lo imprimimos en la consola del navegador, veremos que cada tipo de dato lo pone
+        diferente un ejemplo seria que los tipos numericos y los tipos booleans, los pone de color azul y los strings de
+        negro, pero cuando los imprimimos de la manera anterior, si interpolamos variables con backticks, con las 
+        "Template Strings" veremos que JS toma todo como un string y lo pone todo de negro, como veremos acontinuacion:*/
+        console.log(`Hola mi nombre es ${name} ${lastnames} y tengo ${years} años.¿Puedo ser tu amgigo?`);
+
+        /*Existen comodines, que podemos utilizar en console.log() que son otra opcion para interpolar variables por asi
+        decirlo,veremos como es su sintaxis acontinuacion:*/
+        console.log(`Hola mi nombre es %s %s y tengo %d años.`, name, lastnames, years);
+        /*Aqui lo que hicimos es que en ves de interpolar las variables con el ${}, pusimos comodines, los comodines indican
+        que le vas a pasar despues, por ejemplo el %s indica que le pasaras un texto y el %d indica que le pasaras un digito
+        y termina el mesnaje sin nada solo con los comodines, despues vas a remplazar los comodines, en este caso, despues
+        del mensaje, vamos a poner las variables que vamos a cambiarlas por los comodines, la primera remplaza al primer
+        comodin y asi sucesivamente.*/
+
+        console.clear();
+        /*Este metodo de console, que es el .clear() es muy util, ya que lo que va a ser, es limpiar toda la consola, todo
+        lo que hayamos mandado para alla sera borrado despues de este metodo .clear(), por eso puede ser bastante util,
+        por que el codigo esta pero en la consola se borro todo, un dato importante es que este metodo no lleva parametros.*/
+
+        console.log(window);
+        console.log(document);//El document es la represetacion del documento html atraves de JS.
+        /*Si mandamos a la consola cualquier objeto con el console.log pues nos va a mostrar caracteristicas del objeto
+        en cuestion en el del document nos va a mostrar todo lo que hemos hecho en este archivo, pero, ¿Como le hago para
+        ver ese mismo objeto document pero para ver todos los metodos, caracteristicas y atributos en JS? para eso 
+        utilizaremos el metodo del objeto console .dir()*/
+
+        console.dir(document);
+        /*Pues el metodo .dir() nos servira justamente para esto, para mostrarnos todos los metodos, atributos y 
+        caracteristicas de un objeto, y nos permetira convertir un elemento a un objeto para ver todas esas cosas, tal
+        como en el ejemplo anterior del "document"*/
+
+        console.clear();
+
+        /*Podemos hacer grupos en la consola con el metodo .group() o .groupCollapsed(), la diferencia entre estos es que
+        te aparece para minimizar el grupo con el .groupCollapsed() y con el .group() no, pero esto es dependiendo la
+        consola del navegador en la que estes, para terminar el grupo o indicarle a JS que termine en grupo utilizaremos
+        el metodo .groupEnd() y asi JS finalizara el grupo.*/
+
+        console.group("Juegos que he jugado en mi vida.");
+        console.log("Fornite");
+        console.log("Mario Bros");
+        console.log("Fifa");
+        console.log("Etc.");
+        console.groupEnd();
+
+        console.groupCollapsed("Deportes favoritos.");
+        console.log("Futbol");
+        console.log("basquetbol");
+        console.log("Levantamiento de pesas");
+        console.groupEnd();
+
+        /*En este caso utilice los dos para ver si tenian alguna diferencia y en el navegdor de Microsoft Edge su consola
+        procesa de la misma manera los dos, solamente con una pequeña difencia el .group te mostrara al inicio la lista
+        del grupo en la consola y ya depues tu la puedes minimizar y asi y el .gropuCollapsed() de una te aparece minimizado
+        solo tienen esa diferencia y su funcion es hacer grupos y el .groupEnd los finaliza, un daro importante de 
+        conocer es que en los grupos puede ir lo que sea, cualquier tipo de dato, lo que sea.*/
+
+        console.clear();
+
+        /*Habiamos visto como acceder a los metodos, caracteristicas y atribtuos de un objeto, pero cuando lo imprimimos
+        en la consola nos los muestra como objeto, pero con el metodo .table() podemos hacer que todos esos datos, nos los
+        organize en una tabla como a continuacion lo veremos, sin embargo debes saber que tienes que utilizar el 
+        constructor "Object" y el metodo .entries() y pasarle como argumento el objeto que queramos, con el .table() para
+        poder hacer la tabla de los datos del objeto:*/
+        
+        console.table(Object.entries(console).sort());/*Es como si lo hiciera un array y el metodo .sort() que utilice al
+        final del console.table() fue solamente para ordenarlo de manera ascendente osea de manera alfabetica.*/
+
+        /*Sin embargo no es lo unico que podemos hacerlo tabla, tambien podemos utilizar este metodo con arrays y objetos,
+        etc...*/
+
+        const numeros = [10, 20, 30, 40, 50];
+        const vocales = ["A", "E", "I", "O", "U"];
+
+        console.table(numeros);
+        console.table(vocales);
+
+        const consola = {
+            marca: "Xbox",
+            modelo: 360,
+            color: "Negro"
+        }
+        console.table(consola);
+        console.clear();
+
+        /*Tambien existe un metodo que nos ayudara para saber cuanto tiempo tarda un bloque de codigo en ejecutarse, es el
+        metodo .time() de console, acontinuacion lo veremos:*/
+
+        /*
+        console.time("Cuanto duro?");
+        const prueba = Array(1000);
+
+        for (let i = 0; i <= prueba.length; i++) {
+            prueba[i] += "mas";
+        }
+
+        console.timeEnd("Cuanto duro?");
+        console.log(prueba);
+        */
+
+        /*En los parametros tienen que tener lo mismo ya que son como una etiqueta, y pues tiene que ser la misma para que
+        funcionen, y tiene que ir obligatoriamente el .timeEnd() al final del bloque de codigo que queremos ver cuanto
+        tiempo dura en ejecutarse, y basicamente esa es la estructura y esa es su funcionalidad, solamente que en esta
+        ocasion los comente ya que mi compu o la consola del navegador no lo soporta.*/
+
+        /*Existe otro metodo que es el .count() que es para ver cuantas veces se a ejecutado algun bloque de codigo, esto
+        nos sera muy util si queremos ver si todo esta funcionando bien, y esta ejecutandose el codigo bien, puede ser
+        demasido util en ocasiones donde queramos corregir erroes en algo que no esta haciendose bien, acontinuacion lo
+        veremos:*/
+
+        for (let i = 0;i <= 100;i++){
+            console.count("Codigo for");
+            console.log(i);
+        }
+
+        console.clear();
+
+        /*Tambien a este metodo tenemos que colocarle un alias para poderlo identificar, como en el anterior, solo que en
+        este caso tiene que ir dentro del bloque que se esta ejecutando para poder ver cuantas veces se esta ejecutando
+        dicho codigo*/
+
+        /*Hay otro metodo que nos va a servir para hacer pruebas unitarias, que nos van a servir de mucho y que aparte
+        es muy buena practica el utilizarla para corroborar ciertos datos en especifico, como por ejemplo;*/
+
+        let a = 3;
+        let b = 4;
+        let pruebaUnitaria = "Se espera que b siempre sea mayor quen a";
+
+        console.assert(b>a, {b, a, pruebaUnitaria});
+
+        /*Tienes que pasarle una condicion al metodo .assert() y despues poner las variables que estan relacionadas con la
+        condicion y lo que se espera que pase siempre en el codigo, si no hay error nunca se ejecutara el metodo .assert()
+        pero en caso de que si, te imprimira en la consola un error de asercion y te dira por que, sera por que fallo la
+        condicion pero ahi lo podras ver mejor, por eso es importante poner que se espera para que asi, otros progamadores
+        puedan ver por que hubo error, recuerda que despues de poner la condicion van las variables relacionadas con
+        la condicion y lo que se espera y eso tiene que estar encerrado en llaves {}.*/
+
+        /*La consola tiene mas metodos, pero no los veremos todos, estos son los mas importantes, los demas los podemos
+        ver con el metedo .dir() de console o podemos verlo en MDN en un buscador para ver todos los metodos y sus
+        funciones.*/
+
+
+
+
+
+
+    </script>
+</body>
+</html>
